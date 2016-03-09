@@ -26,7 +26,7 @@
 						<li><a href="recherche.php">Recherche avancée</a></li>
 					</ul>
 				</li>
-				<li style="float:right"><a href="#">Ajoutez votre annonce !</a></li>
+				<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>
 
 			</ul>
 		</nav>
