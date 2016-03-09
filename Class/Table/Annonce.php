@@ -6,7 +6,7 @@
  * Date: 08/03/16
  * Time: 09:05
  */
-class Annonce extends Table
+class Annonce
 {
 
 	/**
