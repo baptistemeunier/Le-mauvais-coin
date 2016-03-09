@@ -11,7 +11,7 @@ $App = new App();
 
 /* Récuperation des annonces */
 if($categorie){
-	$annonces = $App->getDBInstance()->findAnnoncesByCategorie($categorie);
+	$annonces = $App->getDBInstance()->findAnnoncesBy(array('a.categorie_id' => $categorie));
 	echo $App->getTemplate()->render("listannonces", array('titre' => "Recherche par categorie", 'annonces' => $annonces));
 }else{
 	$categories = $App->getDBInstance()->findAllCategories();

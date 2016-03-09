@@ -34,40 +34,41 @@ class Database
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
 		ORDER BY date DESC');
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$query->closeCursor();
+		return $annonces;
 	}
 
-	public function findAnnoncesByCategorie($id){
+	public function findAnnoncesBy($conditions){
+		$temp = array();
+		foreach($conditions as $field => $value){
+			$temp[] = $field."= ".$value;
+		}
+		$where = "WHERE ".implode("AND", $temp);
 		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
 		FROM annonces AS a
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
-		WHERE a.categorie_id = :id
+		 '.$where.'
 		ORDER BY date DESC');
 		$query->bindParam('id', $id, PDO::PARAM_INT);
 		$query->execute();
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
-	}
-
-	public function findAnnoncesByVille($id){
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
-		FROM annonces AS a
-		LEFT JOIN categories AS c ON c.id = a.categorie_id
-		LEFT JOIN villes AS v ON v.id = a.ville_id
-		WHERE a.ville_id = :id
-		ORDER BY date DESC');
-		$query->bindParam('id', $id, PDO::PARAM_INT);
-		$query->execute();
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$query->closeCursor();
+		return $annonces;
 	}
 
 	public function findAllCategories(){
 		$query = $this->db->query('SELECT * FROM categories');
-		return $query->fetchAll(PDO::FETCH_CLASS);
+		$categories = $query->fetchAll(PDO::FETCH_CLASS);
+		$query->closeCursor();
+		return $categories;
 	}
 
 	public function findAllVilles(){
 		$query = $this->db->query('SELECT * FROM villes');
-		return $query->fetchAll(PDO::FETCH_CLASS);
+		$villes = $query->fetchAll(PDO::FETCH_CLASS);
+		$query->closeCursor();
+		return $villes;
 	}
 }
