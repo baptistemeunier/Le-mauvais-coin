@@ -1,0 +1,131 @@
+/**
+ * base.css
+ * CSS Commun à toutes les pages
+**/
+
+/* Importation de la police Open Sans */
+@import url("font.css");
+
+
+/* Color of background */
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+
+    background-color: #D2D2D2;
+    text-align: center;
+}
+#page {
+    text-align: left;
+    background-color: #FFF;
+    margin: 0 auto;
+    padding: 0 auto;
+    width: 80%;
+    min-height: 1000px;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #434343;
+}
+
+header li {
+    float: left;
+}
+
+header li a{
+    display: inline-block;
+    font-weight: 700;
+    padding: 15px 15px;
+
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+}
+
+header li a:hover {
+    background-color: #E0BB15;
+}
+
+header li ul{
+    display: none;
+}
+
+header li:hover ul{
+    position: absolute;
+    overflow: hidden;
+    display: block;
+}
+
+h1{
+    padding-left: 15px;
+    color: #E0BB15;
+}
+/**
+ * Systeme de grille
+ */
+.grille{
+    margin-bottom: 15px;
+}
+.grille .collone{
+    display: inline-block;
+}
+.grille .collone-1{
+    width: 8.33%;
+}
+.grille .collone-4{
+    width: 33.32%;
+}
+.grille .collone-5{
+    width: 41.65%;
+}
+.grille .collone-6{
+    width: 49.98%;
+}
+
+article{
+    border: #E0BB15 1px solid;
+    position: relative;
+}
+article footer{
+    background-color: #434343;
+    border: #E0BB15 1px solid;
+}
+article footer p{
+    font-weight: 300;
+    color: #FFF;
+    padding: 0;
+    margin: 5px;
+}
+article header{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-decoration: none;
+    margin-top: 5px;
+}
+article a{
+    font-weight: 400;
+    color: #E0BB15;
+    text-decoration: none;
+    margin: 5px;
+}
+article p{
+    padding-left: 10px;
+}
+article .info{
+    font-weight:300;
+}
+
+.prix{
+    font-weight: 400;
+    position: absolute;
+    right: 15%;
+    bottom: 40px;
+    font-size: 2em;
+    color: #E0BB15;
+}
