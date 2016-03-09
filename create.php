@@ -6,10 +6,8 @@
 
 /* Chargement de autoloader et des classe nessesaire */
 require_once "Class/autoloader.php";
-
-$template = new Template();
-$query = new Query('localhost', 'projet', 'root', '');
+$App = new App();
 
 
-echo $template->render("View/createannonce.php");
+echo $App->getTemplate()->render("createannonce");
 
