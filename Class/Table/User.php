@@ -10,6 +10,8 @@ class User
 {
 	protected $mdp;
 
+	protected $admin;
+
 	/**
 	 * @return mixed
 	 */
@@ -24,6 +26,22 @@ class User
 	public function setMdp($mdp)
 	{
 		$this->mdp = $mdp;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function isAdmin()
+	{
+		return boolval($this->admin);
+	}
+
+	/**
+	 * @param mixed $admin
+	 */
+	public function setAdmin($admin)
+	{
+		$this->admin = $admin;
 	}
 
 

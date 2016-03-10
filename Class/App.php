@@ -87,7 +87,7 @@ class App
 		}else{
 			if($user->getMdp()==hash('sha256', $mdp)){
 				$this->session->setMessage("<b>Connexion reussi !</b> Vous étes maintenant connecté");
-				$this->session->set("_user", $user);
+				$this->session->set("_user", serialize($user));
 				return true;
 			}
 			$this->session->setMessage("<b>Connexion imposible !</b> Mot de passe incorect");

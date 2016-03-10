@@ -29,12 +29,23 @@ class Session
 		return $messages;
 	}
 
+	/** Fonction is_connect
+	 * Cherche si l'utilisateur est connecté
+	 * @return bool true si connecté false sinon
+	 */
 	public function is_connect(){
-
+		if(isset($_SESSION['_user'])){
+			return true;
+		}
+		return false;
 	}
 
-	public function is_admin(){
-
+	/** Is
+	 * @return User Information de l'utilisateur
+	 */
+	public function getUser(){
+		$user = unserialize($_SESSION['_user']);
+		return $user;
 	}
 
 }
