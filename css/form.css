@@ -1,0 +1,25 @@
+label{
+    width: 100%;
+    display: block;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+input,
+select,
+textarea{
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    border: solid 1px #dcdcdc;
+    transition: box-shadow 0.3s, border 0.3s;
+}
+textarea,
+.inline{
+    width: 100%;
+}
+input:focus,
+select:focus,
+textarea:focus{
+    outline: none;
+    border: solid 1px #E0BB15;
+}
