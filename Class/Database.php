@@ -34,40 +34,57 @@ class Database
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
 		ORDER BY date DESC');
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$query->closeCursor();
+		return $annonces;
 	}
 
-	public function findAnnoncesByCategorie($id){
+	public function findAnnoncesBy($conditions){
+		$temp = array();
+		foreach($conditions as $field => $value){
+			$temp[] = $field."= ".$value;
+		}
+		$where = "WHERE ".implode("AND", $temp);
 		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
 		FROM annonces AS a
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
-		WHERE a.categorie_id = :id
+		 '.$where.'
 		ORDER BY date DESC');
 		$query->bindParam('id', $id, PDO::PARAM_INT);
 		$query->execute();
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
-	}
-
-	public function findAnnoncesByVille($id){
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
-		FROM annonces AS a
-		LEFT JOIN categories AS c ON c.id = a.categorie_id
-		LEFT JOIN villes AS v ON v.id = a.ville_id
-		WHERE a.ville_id = :id
-		ORDER BY date DESC');
-		$query->bindParam('id', $id, PDO::PARAM_INT);
-		$query->execute();
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$query->closeCursor();
+		return $annonces;
 	}
 
 	public function findAllCategories(){
 		$query = $this->db->query('SELECT * FROM categories');
-		return $query->fetchAll(PDO::FETCH_CLASS);
+		$categories = $query->fetchAll(PDO::FETCH_CLASS, "Caterorie");
+		$query->closeCursor();
+		return $categories;
 	}
 
 	public function findAllVilles(){
 		$query = $this->db->query('SELECT * FROM villes');
-		return $query->fetchAll(PDO::FETCH_CLASS);
+		$villes = $query->fetchAll(PDO::FETCH_CLASS, "Ville");
+		$query->closeCursor();
+		return $villes;
 	}
+
+	public function AddAnnonce($data)
+	{
+		dump($data);
+		$a = "1";
+		$query = $this->db->prepare('INSERT INTO annonces(titre, description, prix, user_id, date, categorie_id, ville_id) VALUES (:titre, :description, :prix, :user_id, :date, :categorie_id, :ville_id)');
+		$query->bindParam('titre', $data['titre'], PDO::PARAM_STR);
+		$query->bindParam('description', $data['description'], PDO::PARAM_STR);
+		$query->bindParam('prix', $data['prix'], PDO::PARAM_STR);
+		$query->bindParam('user_id', $a, PDO::PARAM_STR);
+		$query->bindParam('date', date("Y-m-d"), PDO::PARAM_STR);
+		$query->bindParam('categorie_id', $data['categorie'], PDO::PARAM_STR);
+		$query->bindParam('ville_id', $data['ville'], PDO::PARAM_STR);
+		$query->execute();
+	}
+
 }

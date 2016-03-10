@@ -2,7 +2,7 @@
 
 <ul>
 	<?php foreach($villes as $k => $ville): ?>
-	<li><a href="ville.php?ville=<?= $ville->id ?>"><?= $ville->ville ?></a></li>
+	<li><a href="ville.php?ville=<?= $ville->getId() ?>"><?= $ville->getVille() ?></a></li>
 	<?php endforeach; ?>
 </ul>
 

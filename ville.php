@@ -6,12 +6,13 @@
 
 /* Chargement de autoloader et des classe nessesaire */
 require_once "Class/autoloader.php";
-$template = new Template();
-$query = new Query('localhost', 'projet', 'root', '');
+$ville = (isset($_GET['ville']) && is_numeric($_GET['ville']))?$_GET['ville']:null;
+$App = new App();
+
 if($ville){
-	$annonces = $query->findAnnoncesByVille($ville);
-	echo $template->render("View/listannonces.php", array('titre' => "Recherche par ville", 'annonces' => $annonces));
+	$annonces = $App->getDBInstance()->findAnnoncesBy(array('a.ville_id' => $ville));
+	echo $App->getTemplate()->render("listannonces", array('titre' => "Recherche par ville", 'annonces' => $annonces));
 }else{
-	$villes = $query->findAllVilles();
-	echo $template->render("View/listvilles.php", array('titre' => "Liste des villes disponible", 'villes' => $villes));
+	$villes = $App->getDBInstance()->findAllVilles();
+	echo $App->getTemplate()->render("listvilles", array('titre' => "Liste des villes disponible", 'villes' => $villes));
 }

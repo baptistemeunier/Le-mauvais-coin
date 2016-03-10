@@ -11,12 +11,12 @@
 				<a href="#"><?= $annonce->getTitreFormat() ?></a>
 			</header>
 			<p class="info">
-				<?= $annonce->ville ?>
+				<?= $annonce->getVille() ?>
 				<span class="prix"><?= $annonce->getPrixFormat() ?></span>
 			</p>
 			<footer>
 				<p>
-					<a href="categorie.php?cat=<?= $annonce->categorie_id ?>"> <?= $annonce->getCategorieFormat() ?> </a>
+					<a href="categorie.php?cat=<?= $annonce->getCategorieId() ?>"> <?= $annonce->getCategorieFormat() ?> </a>
 					<span style="float: right;"><?= $annonce->getDateFormat() ?></span>
 				</p>
 			</footer>
