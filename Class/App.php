@@ -57,5 +57,42 @@ class App
 	{
 		return $this->database;
 	}
+
+	/**
+	 * Fonction getTemplate
+	 * Permet de recupérer l'instance de Template
+	 * @return Template
+	 */
+	public function getSession()
+	{
+		return $this->session;
+	}
+
+	public function render($file, $data = array())
+	{
+		$this->template->set('session', $this->session);
+		return $this->template->render($file, $data);
+	}
+
+	/**
+	 * @param String $email L'email du compte
+	 * @param String $mdp Le mot de passe du compte
+	 * @return Bool true si il connecté false sinon
+	 */
+	public function connectUser($email, $mdp)
+	{
+		$user = $this->database->findUser($email);
+		if($user === false){
+			$this->session->setMessage("<b>Connexion imposible !</b> Cette email ne corespond à aucun compte");
+		}else{
+			if($user->getMdp()==hash('sha256', $mdp)){
+				$this->session->setMessage("<b>Connexion reussi !</b> Vous étes maintenant connecté");
+				$this->session->set("_user", $user);
+				return true;
+			}
+			$this->session->setMessage("<b>Connexion imposible !</b> Mot de passe incorect");
+		}
+		return false;
+	}
 }
 ?>

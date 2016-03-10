@@ -29,9 +29,15 @@
 						</li>
 						<li><a href="stat.php">Statistiques</a></li>
 <!--						<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li> -->
-						<li style="float:right"><a href="create.php">Connexion</a></li>
+						<li style="float:right"><a href="connect.php">Connexion</a></li>
 					</ul>
 				</nav>
 			</header>
 
 			<h1><?= (isset($titre))?$titre:'Bienvenue sur le Mauvais Coin'?></h1>
+
+			<?php foreach($session->getMessages() as $type => $message): ?>
+				<div class="message-global <?= $type ?>">
+					<?= $message ?>
+				</div>
+			<?php endforeach; ?>
