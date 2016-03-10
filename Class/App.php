@@ -24,11 +24,17 @@ class App
 	 **/
 	private $config;
 
+	/** Instance de la classe Session
+	 * @var Session $session
+	 **/
+	private $session;
+
 	function __construct()
 	{
 		/* Appel les classes nécessaire aux pages */
 		$this->config = include("config.php");
 		$this->template = new Template($this->config['dir_view']);
+		$this->session = new Session();
 		$this->database = new Database($this->config['db_host'], $this->config['db_name'], $this->config['db_login'], $this->config['db_pass']);
 	}
 
