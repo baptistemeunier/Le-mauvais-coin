@@ -60,15 +60,31 @@ class Database
 
 	public function findAllCategories(){
 		$query = $this->db->query('SELECT * FROM categories');
-		$categories = $query->fetchAll(PDO::FETCH_CLASS);
+		$categories = $query->fetchAll(PDO::FETCH_CLASS, "Caterorie");
 		$query->closeCursor();
 		return $categories;
 	}
 
 	public function findAllVilles(){
 		$query = $this->db->query('SELECT * FROM villes');
-		$villes = $query->fetchAll(PDO::FETCH_CLASS);
+		$villes = $query->fetchAll(PDO::FETCH_CLASS, "Ville");
 		$query->closeCursor();
 		return $villes;
 	}
+
+	public function AddAnnonce($data)
+	{
+		dump($data);
+		$a = "1";
+		$query = $this->db->prepare('INSERT INTO annonces(titre, description, prix, user_id, date, categorie_id, ville_id) VALUES (:titre, :description, :prix, :user_id, :date, :categorie_id, :ville_id)');
+		$query->bindParam('titre', $data['titre'], PDO::PARAM_STR);
+		$query->bindParam('description', $data['description'], PDO::PARAM_STR);
+		$query->bindParam('prix', $data['prix'], PDO::PARAM_STR);
+		$query->bindParam('user_id', $a, PDO::PARAM_STR);
+		$query->bindParam('date', date("Y-m-d"), PDO::PARAM_STR);
+		$query->bindParam('categorie_id', $data['categorie'], PDO::PARAM_STR);
+		$query->bindParam('ville_id', $data['ville'], PDO::PARAM_STR);
+		$query->execute();
+	}
+
 }
