@@ -23,22 +23,18 @@ class Form
 	}
 
 	public function input($name, $options = array()){
-		$option = "";
 		if(isset($this->data[$name])){
 			$options['value'] = $this->data[$name];
 		}
-		foreach($options as $k => $v){
-			$option .= $k.'='.$v.' ';
-		}
-		return '<input name="'.$name.'" '.$option.'>';
+		return '<input name="'.$name.'" '.$this->getOptions($options).'>';
 	}
 
 	public function textarea($name){
 		return '<textarea name="'.$name.'">'.(isset($this->data[$name])?$this->data[$name]:"").'</textarea>';
 	}
-	public function select($name, $valeur){
+	public function select($name, $valeur, $options = array()){
 		$data = (isset($this->data[$name])?$this->data[$name]:null);
-		$select = '<select name="'.$name.'">';
+		$select = '<select name="'.$name.'" '.$this->getOptions($options).'>';
 		if(!is_array(current($valeur))){
 			$select .= $this->option($valeur, $data);
 		}else{
@@ -69,5 +65,18 @@ class Form
 	 **/
 	public function close(){
 		return '</form>';
+	}
+
+	/**
+	 * @param Array $options
+	 * @return string
+	 */
+	private function getOptions($options)
+	{
+		$option = "";
+		foreach($options as $k => $v){
+			$option .= $k.'='.$v.' ';
+		}
+		return $option;
 	}
 }
