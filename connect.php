@@ -1,8 +1,8 @@
 <?php
 session_start();
 /**
- * index.php
- * Fichier gérant l'affichage de la page d'accueil
+ * connect.php
+ * Page gérant la connexion et la déconnexion des utilisateur
  **/
 
 /* Chargement de autoloader et de la classe App */
@@ -11,6 +11,11 @@ $App = new App();
 
 /* Titre de la page */
 $App->getTemplate()->set("titre", 'Espace membres : Connexion');
+
+/* Si l'utilisateur est connectée */
+if($App->getSession()->is_connect()){
+	$App->disconnectUser(); // On le déconnecte
+}
 
 /* Si le formulaire est remplie */
 if(!empty($_POST)){

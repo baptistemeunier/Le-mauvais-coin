@@ -61,7 +61,7 @@ class App
 	/**
 	 * Fonction getTemplate
 	 * Permet de recupérer l'instance de Template
-	 * @return Template
+	 * @return Session
 	 */
 	public function getSession()
 	{
@@ -86,7 +86,7 @@ class App
 			$this->session->setMessage("<b>Connexion imposible !</b> Cette email ne corespond à aucun compte");
 		}else{
 			if($user->getMdp()==hash('sha256', $mdp)){
-				$this->session->setMessage("<b>Connexion reussi !</b> Vous étes maintenant connecté");
+				$this->session->setMessage("<b>Connexion reussi !</b> Vous étes maintenant connecté", 'valid');
 				$this->session->set("_user", serialize($user));
 				return true;
 			}
@@ -94,5 +94,12 @@ class App
 		}
 		return false;
 	}
+
+	public function disconnectUser()
+	{
+		$this->session->setMessage("Vous étes maintenant déconnecté", 'valid');
+		unset($_SESSION['_user']);
+	}
+
 }
 ?>
