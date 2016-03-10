@@ -42,7 +42,7 @@ class Database
 	public function findAnnoncesBy($conditions){
 		$temp = array();
 		foreach($conditions as $field => $value){
-			$temp[] = $field."= ".$value;
+			$temp[] = ' '.$field."= ".$value.' ';
 		}
 		$where = "WHERE ".implode("AND", $temp);
 		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
@@ -70,6 +70,14 @@ class Database
 		$villes = $query->fetchAll(PDO::FETCH_CLASS, "Ville");
 		$query->closeCursor();
 		return $villes;
+	}
+
+	public function findAllRegions()
+	{
+		$query = $this->db->query('SELECT * FROM regions');
+		$regions = $query->fetchAll(PDO::FETCH_CLASS);
+		$query->closeCursor();
+		return $regions;
 	}
 
 	public function AddAnnonce($data)
