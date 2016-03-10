@@ -18,11 +18,18 @@ class App
 	 **/
 	private $database;
 
+
+	/** Instance la classe Database
+	 * @var Array $config
+	 **/
+	private $config;
+
 	function __construct()
 	{
 		/* Appel les classes nécessaire aux pages */
-		$this->template = new Template("View/");
-		$this->database = new Database('localhost', 'projet', 'root', '');
+		$this->config = include("config.php");
+		$this->template = new Template($this->config['dir_view']);
+		$this->database = new Database($this->config['db_host'], $this->config['db_name'], $this->config['db_login'], $this->config['db_pass']);
 	}
 
 	/**
