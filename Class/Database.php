@@ -95,4 +95,20 @@ class Database
 		$query->execute();
 	}
 
+	/** Fonction findUser
+	 * Recherche un utilisateur
+	 * @param String $email L'email du compte
+	 * @return User|false mixed L'utilisateur ou false si aucun n'est trouvé
+	 */
+	public function findUser($email)
+	{
+		$query = $this->db->prepare('SELECT * FROM users WHERE email=:email');
+		$query->bindParam('email', $email, PDO::PARAM_STR);
+		$query->execute();
+		$user = $query->fetchObject("User");
+		$query->closeCursor();
+		return $user;
+
+	}
+
 }

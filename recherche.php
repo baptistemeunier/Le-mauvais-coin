@@ -3,6 +3,7 @@
  * index.php
  * Fichier gérant l'affichage de la page d'accueil
  */
+session_start();
 
 /* Chargement de autoloader et des classe nessesaire */
 require_once "Class/autoloader.php";
@@ -30,8 +31,7 @@ if(!empty($_POST)){
 		$champs['a.prix >'] = $_POST['prix-mini'];
 		$champs['a.prix <'] = $_POST['prix-max'];
 	}
-	dump($champs);
 	$annonces = $App->getDBInstance()->findAnnoncesBy($champs);
 }
 
-echo $App->getTemplate()->render("recherche", array('form' => new Form($_POST),'categories' => $categories, 'villes' => $villes, 'regions' => $regions, 'annonces' => $annonces));
+echo $App->render("recherche", array('form' => new Form($_POST),'categories' => $categories, 'villes' => $villes, 'regions' => $regions, 'annonces' => $annonces));
