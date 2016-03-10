@@ -1,9 +1,9 @@
 <?php
-session_start();
 /**
  * connect.php
  * Page gérant la connexion et la déconnexion des utilisateur
  **/
+session_start();
 
 /* Chargement de autoloader et de la classe App */
 require_once "Class/autoloader.php";

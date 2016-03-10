@@ -1,9 +1,9 @@
 <?php
-session_start();
 /**
  * index.php
  * Fichier gérant l'affichage de la page d'accueil
  **/
+session_start();
 
 /* Chargement de autoloader et de la classe App */
 require_once "Class/autoloader.php";
