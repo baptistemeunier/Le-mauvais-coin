@@ -2,20 +2,13 @@
 
 <?= /** @var Form $form */ $form->create("#") ?>
 <?= $form->select('categorie', $categories) ?>
-<select name="localisation">
-	<option value="none">Toute les régions</option>
-	<optgroup label="Régions">
-		<?php foreach($regions as $r): ?>
-			<option value="region-<?= $r->id ?>"><?= $r->region ?></option>
-		<?php endforeach; ?>
-	</optgroup>
-	<optgroup  label="Ville">
-		<?php foreach($villes as $v): ?>
-			<option value="ville-<?= $v->getId() ?>"><?= $v->getVille() ?></option>
-		<?php endforeach; ?>
-	</optgroup>
-</select>
-	Entre <input type="number" name="prix[mini]"> et <input type="number" name="prix[max]">
+<?= $form->select('localisation', array('Région' => $regions, "Ville" => $villes)) ?>
+
+Entre
+<!--<input type="number" name="prix-mini"> et <input type="number" name="prix-max"> -->
+<?= $form->input('prix-mini', array('type' => 'number')) ?>
+<?= $form->input('prix-max', array('type' => 'number')) ?>
+
 <?= $form->input('submit', array('type' => 'submit', 'value' => 'Rechercher')) ?>
 <?= $form->close() ?>
 

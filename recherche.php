@@ -26,10 +26,11 @@ if(!empty($_POST)){
 			$champs['v.id'] = $temp[1];
 		}
 	}
-	if($_POST['prix']['mini'] != '' && $_POST['prix']['max'] != '' && $_POST['prix']['max'] >= $_POST['prix']['mini']){
-		$champs['a.prix >'] = $_POST['prix']['mini'];
-		$champs['a.prix <'] = $_POST['prix']['max'];
+	if($_POST['prix-mini'] != '' && $_POST['prix-max'] != '' && $_POST['prix-max'] >= $_POST['prix-mini']){
+		$champs['a.prix >'] = $_POST['prix-mini'];
+		$champs['a.prix <'] = $_POST['prix-max'];
 	}
+	dump($champs);
 	$annonces = $App->getDBInstance()->findAnnoncesBy($champs);
 }
 

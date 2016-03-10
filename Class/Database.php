@@ -75,7 +75,7 @@ class Database
 	public function findAllRegions()
 	{
 		$query = $this->db->query('SELECT * FROM regions');
-		$regions = $query->fetchAll(PDO::FETCH_CLASS);
+		$regions = $query->fetchAll(PDO::FETCH_CLASS, "Region");
 		$query->closeCursor();
 		return $regions;
 	}
