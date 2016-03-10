@@ -1,7 +1,12 @@
-<?php if($k%2 == 0): ?>
+<?php
+/**
+ * @var Int $k L'index de l'anonce dans le tableau d'annonce
+ * @var Annonce $annonce L'annonce à afficher
+ **/
+if($k%2 == 0): ?>
 <div class="grille">
 	<div class="collone collone-1"></div>
-	<?php endif; ?>
+<?php endif; ?>
 	<div class="collone collone-4">
 		<article>
 			<header>
@@ -20,6 +25,6 @@
 		</article>
 	</div>
 	<div class="collone collone-1"></div>
-	<?php if($k%2 == 1): ?>
+<?php if($k%2 == 1): ?>
 </div>
 <?php endif; ?>

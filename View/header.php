@@ -27,8 +27,9 @@
 								<li><a href="recherche.php">Recherche avancée</a></li>
 							</ul>
 						</li>
-						<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>
-
+						<li><a href="stat.php">Statistiques</a></li>
+<!--						<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li> -->
+						<li style="float:right"><a href="create.php">Connexion</a></li>
 					</ul>
 				</nav>
 			</header>
