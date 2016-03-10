@@ -8,6 +8,9 @@
  */
 class User
 {
+
+	protected $id;
+
 	protected $mdp;
 
 	protected $admin;
@@ -42,6 +45,22 @@ class User
 	public function setAdmin($admin)
 	{
 		$this->admin = $admin;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @param mixed $id
+	 */
+	public function setId($id)
+	{
+		$this->id = $id;
 	}
 
 

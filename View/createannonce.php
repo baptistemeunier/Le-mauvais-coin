@@ -1,4 +1,6 @@
-<?php include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php
+/** @var Form $form */
+ include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <div class="grille">
 	<div class="collone collone-1"></div>

@@ -17,7 +17,7 @@ if(!$App->getSession()->is_connect()){
 
 /* Si le formulaire est remplie */
 if(!empty($_POST)){
-	$App->getDBInstance()->AddAnnonce($_POST); // On ajoute l'annonce
+	$App->getDBInstance()->AddAnnonce($_POST, $App->getSession()->getUser()->getId()); // On ajoute l'annonce
 }
 
 $categories = $App->getDBInstance()->findAllCategories();

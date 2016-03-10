@@ -80,15 +80,14 @@ class Database
 		return $regions;
 	}
 
-	public function AddAnnonce($data)
+	public function AddAnnonce($data, $id)
 	{
-		dump($data);
-		$a = "1";
+		$prix = ($data['prix'] == "")?null:$data['prix'];
 		$query = $this->db->prepare('INSERT INTO annonces(titre, description, prix, user_id, date, categorie_id, ville_id) VALUES (:titre, :description, :prix, :user_id, :date, :categorie_id, :ville_id)');
 		$query->bindParam('titre', $data['titre'], PDO::PARAM_STR);
 		$query->bindParam('description', $data['description'], PDO::PARAM_STR);
-		$query->bindParam('prix', $data['prix'], PDO::PARAM_STR);
-		$query->bindParam('user_id', $a, PDO::PARAM_STR);
+		$query->bindParam('prix', $prix, PDO::PARAM_STR);
+		$query->bindParam('user_id', $id, PDO::PARAM_STR);
 		$query->bindParam('date', date("Y-m-d"), PDO::PARAM_STR);
 		$query->bindParam('categorie_id', $data['categorie'], PDO::PARAM_STR);
 		$query->bindParam('ville_id', $data['ville'], PDO::PARAM_STR);

@@ -58,7 +58,7 @@ class Region
 	 * @return array
 	 */
 	function formOption($optgroup = false){
-		$value = (($optgroup === true)?'region':'').'-'.$this->id;
+		$value = (($optgroup === true)?'region-':'').$this->id;
 		return array('value' => $value, 'name' => $this->region);
 	}
 }

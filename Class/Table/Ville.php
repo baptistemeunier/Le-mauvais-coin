@@ -129,7 +129,7 @@ class Ville
 	 * @return array
 	 */
 	function formOption($optgroup = false){
-		$value = (($optgroup === true)?'ville':'').'-'.$this->id;
+		$value = (($optgroup === true)?'ville-':'').$this->id;
 		return array('value' => $value, 'name' => $this->ville);
 	}
 }
