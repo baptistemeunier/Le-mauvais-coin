@@ -10,10 +10,6 @@
 		<label for="description">Description de l'annonce : </label>
 		<?= $form->textarea('description'); ?><br />
 
-		<label for="email">Vos coordonées : </label>
-		<?= $form->input('email'); ?>
-		<?= $form->input('tel'); ?><br />
-
 		<label for="categorie">Catégorie de l'annonce : </label>
 		<?= $form->select('categorie', $categories); ?>
 		<?= $form->input('categorie_autre'); ?><br />

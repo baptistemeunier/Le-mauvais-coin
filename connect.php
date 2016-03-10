@@ -16,12 +16,12 @@ $App->getTemplate()->set("titre", 'Espace membres : Connexion');
 if($App->getSession()->is_connect()){
 	$App->disconnectUser(); // On le déconnecte
 }
-
 /* Si le formulaire est remplie */
 if(!empty($_POST)){
 	/* On tente de connecté l'utilisateur */
 	if($App->connectUser($_POST['email'], $_POST['mdp'])){
 		header('Location: index.php'); // Si connecté on le redirige
+		exit();
 	}
 }
 

@@ -8,9 +8,18 @@ session_start();
 /* Chargement de autoloader et des classe nessesaire */
 require_once "Class/autoloader.php";
 $App = new App();
-if(!empty($_POST)){
-	$App->getDBInstance()->AddAnnonce($_POST);
+/* Si l'utilisateur n'est pas connecté */
+if(!$App->getSession()->is_connect()){
+	$App->getSession()->setMessage("Veuillez vous connecté pour accedée à cette page", 'attention'); // on affiche l'erreur
+	header('Location: connect.php'); // On le redirige vers la connection
+	exit();
 }
+
+/* Si le formulaire est remplie */
+if(!empty($_POST)){
+	$App->getDBInstance()->AddAnnonce($_POST); // On ajoute l'annonce
+}
+
 $categories = $App->getDBInstance()->findAllCategories();
 $villes     = $App->getDBInstance()->findAllVilles();
 
