@@ -32,7 +32,13 @@
 						<?php if($session->is_connect()): ?>
 							<li style="float:right"><a href="connect.php">Déconnexion</a></li>
 							<?php if($session->is_Admin()): ?>
-								<li style="float:right"><a href="#">Panel Admin</a></li>
+								<li style="float:right"><a href="#">Panel Admin</a>
+									<ul>
+										<li><a href="#">Gestion annonce</a></li>
+										<li><a href="#">Gestion membre</a></li>
+									</ul>
+								</li>
+
 							<?php endif; ?>
 							<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>
 						<?php else: ?>
