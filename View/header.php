@@ -43,6 +43,7 @@
 							<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>
 						<?php else: ?>
 							<li style="float:right"><a href="connect.php">Connexion</a></li>
+							<li style="float:right"><a href="inscription.php">Inscription</a></li>
 						<?php endif; ?>
 					</ul>
 				</nav>
