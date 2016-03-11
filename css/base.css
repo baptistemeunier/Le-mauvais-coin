@@ -109,6 +109,9 @@ h1{
     font-weight: 300;
     font-size: 0.9em;
 }
+.info-line p:first-child {
+    border-left: 1px #D3D3D3 solid;
+}
 .info-line:last-child p{
     border-bottom: 1px #D2D2D2 solid;
 }
@@ -118,15 +121,31 @@ h1{
     width: 95%;
     color: #5661d5;
 }
+.info-line .inline-btn{
+    background-color: #FFF;
+    width: 95%;
+    text-align: center;
+}
+
 .info-line .name{
     background-color: rgba(210, 210, 210, 0.32);
     width: 25%;
 }
 .info-line .value{
     width: 65%;
-    /*    margin: 0;
-        padding: 0;*/
 }
+
+.btn{
+    background-color: #F9780B;
+    display: inline-block;
+    line-height: 30px;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0 10px;
+    text-decoration: none;
+    color: #000;
+}
+
 article{
     border: #5661d5 1px solid;
     position: relative;

@@ -35,6 +35,18 @@
 			<p class="name">Téléphone</p>
 			<p class="value">0000000000</p>
 		</div>
+		<?php if($session->is_admin()): ?>
+			<div class="info-line">
+				<p class="inline">Fonction de gestion</p>
+			</div>
+			<div class="info-line">
+				<p class="inline-btn"><a href="#" class="btn" style="background-color: #0783f9;">Modifier l'annonce</a></p>
+			</div>
+			<div class="info-line">
+				<p class="inline-btn"><a href="#" class="btn">Supprimer l'annonce</a></p>
+			</div>
+
+		<?php endif; ?>
 	</div>
 </div>
 <?php include 'footer.php'; // Appel du template contenant les balises <footer> ?>
