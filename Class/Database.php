@@ -139,4 +139,15 @@ class Database
 		return $users;
 	}
 
+	public function AddUser($user)
+	{
+		$user['tel'] = ($user['tel'] == "")?$user['tel']:null;
+		$query = $this->db->prepare('INSERT INTO users(email, tel, mdp, admin) VALUES (:email, :tel, :mdp, 0)');
+		$query->bindParam('email', $user['email'], PDO::PARAM_STR);
+		$query->bindParam('tel', $user['tel'], PDO::PARAM_STR);
+		$query->bindParam('mdp', hash('sha256', $user['mdp']), PDO::PARAM_STR);
+		$query->execute();
+
+	}
+
 }
