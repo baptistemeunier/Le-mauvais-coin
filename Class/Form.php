@@ -18,7 +18,7 @@ class Form
 	 * @param string $method
 	 * @return string
 	 **/
-	public function create($action, $method = "post"){
+	public function create($action = "#", $method = "post"){
 		return '<form action="'.$action.'" method="'.$method.'">';
 	}
 

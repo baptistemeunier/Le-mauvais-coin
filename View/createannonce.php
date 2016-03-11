@@ -4,7 +4,7 @@
 
 <div class="grille">
 	<div class="collone collone-1"></div>
-	<div class="collone collone">
+	<div class="collone collone-6">
 		<?= $form->create("#"); ?>
 		<label for="titre">Titre de l'annonce : </label>
 		<?= $form->input('titre', array('class' => 'inline')); ?><br />
