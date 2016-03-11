@@ -110,4 +110,23 @@ class Database
 
 	}
 
+	/**
+	 * @param $id
+	 * @return false|Annonce
+	 */
+	public function findAnnonce($id)
+	{
+		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
+		FROM annonces AS a
+		LEFT JOIN categories AS c ON c.id = a.categorie_id
+		LEFT JOIN villes AS v ON v.id = a.ville_id
+		WHERE a.id = :id
+		ORDER BY date DESC');
+		$query->bindParam('id', $id, PDO::PARAM_INT);
+		$query->execute();
+		$annonce = $query->fetchObject('Annonce');
+		$query->closeCursor();
+		return $annonce;
+	}
+
 }

@@ -31,7 +31,7 @@
 						<li><a href="stat.php">Statistiques</a></li>
 						<?php if($session->is_connect()): ?>
 							<li style="float:right"><a href="connect.php">Déconnexion</a></li>
-							<?php if($session->getUser()->isAdmin()): ?>
+							<?php if($session->is_Admin()): ?>
 								<li style="float:right"><a href="#">Panel Admin</a></li>
 							<?php endif; ?>
 							<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>

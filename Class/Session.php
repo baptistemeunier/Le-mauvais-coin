@@ -48,4 +48,12 @@ class Session
 		return $user;
 	}
 
+	public function is_Admin()
+	{
+		if(!$this->is_connect()){
+			return false;
+		}
+		return $this->getUser()->isAdmin();
+	}
+
 }
