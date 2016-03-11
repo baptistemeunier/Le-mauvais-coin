@@ -107,7 +107,6 @@ class Database
 		$user = $query->fetchObject("User");
 		$query->closeCursor();
 		return $user;
-
 	}
 
 	/**
@@ -127,6 +126,17 @@ class Database
 		$annonce = $query->fetchObject('Annonce');
 		$query->closeCursor();
 		return $annonce;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function findUsers()
+	{
+		$query = $this->db->query('SELECT * FROM users');
+		$users = $query->fetchAll(PDO::FETCH_CLASS, 'User');
+		$query->closeCursor();
+		return $users;
 	}
 
 }
