@@ -10,7 +10,7 @@ if($k%2 == 0): ?>
 	<div class="collone collone-4">
 		<article>
 			<header>
-				<a href="#"><?= $annonce->getTitreFormat() ?></a>
+				<a href="annonce.php?id=<?= $annonce->getId() ?>"><?= $annonce->getTitreFormat() ?></a>
 			</header>
 			<p class="info">
 				<?= $annonce->getVille() ?>

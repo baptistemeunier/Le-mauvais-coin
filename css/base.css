@@ -52,7 +52,7 @@ header li a{
 }
 
 header li a:hover {
-    background-color: #E0BB15;
+    background-color: #5661d5;
 }
 
 header li ul{
@@ -67,37 +67,73 @@ header li:hover ul{
 
 h1{
     padding-left: 15px;
-    color: #E0BB15;
+    color: #5661d5;
 }
 /**
  * Systeme de grille
  */
 .grille{
-    margin-bottom: 15px;
+    margin: 5%;
 }
 .grille .collone{
     display: inline-block;
+    vertical-align:top;
 }
 .grille .collone-1{
     width: 8.33%;
 }
+.grille .collone-3{
+    width: 29%;
+}
 .grille .collone-4{
-    width: 33.32%;
-}
-.grille .collone-5{
-    width: 41.65%;
-}
-.grille .collone-6{
-    width: 49.98%;
+    width: 39%;
 }
 
+.grille .collone-5{
+    width: 49%;
+}
+.grille .collone-6{
+    width: 59%;
+}
+.info-line{
+    width: 100%;
+
+}
+.info-line p{
+    float: left;
+    margin: 0;
+    padding-left: 4%;
+    border-top: 1px #D3D3D3 solid;
+    border-right: 1px #D3D3D3 solid;
+    line-height: 40px;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+.info-line:last-child p{
+    border-bottom: 1px #D2D2D2 solid;
+}
+.info-line .inline{
+    font-weight: 500;
+    background-color: rgba(210, 210, 210, 0.32);
+    width: 95%;
+    color: #5661d5;
+}
+.info-line .name{
+    background-color: rgba(210, 210, 210, 0.32);
+    width: 25%;
+}
+.info-line .value{
+    width: 65%;
+    /*    margin: 0;
+        padding: 0;*/
+}
 article{
-    border: #E0BB15 1px solid;
+    border: #5661d5 1px solid;
     position: relative;
 }
 article footer{
     background-color: #434343;
-    border: #E0BB15 1px solid;
+    border: #5661d5 1px solid;
 }
 article footer p{
     font-weight: 300;
@@ -114,7 +150,7 @@ article header{
 }
 article a{
     font-weight: 400;
-    color: #E0BB15;
+    color: #5661d5;
     text-decoration: none;
     margin: 5px;
 }
@@ -125,13 +161,14 @@ article .info{
     font-weight:300;
 }
 
+
 .prix{
     font-weight: 400;
     position: absolute;
     right: 15%;
     bottom: 40px;
     font-size: 2em;
-    color: #E0BB15;
+    color: #5661d5;
 }
 
 .message-global{
