@@ -35,7 +35,7 @@
 								<li style="float:right"><a href="#">Panel Admin</a>
 									<ul>
 										<li><a href="#">Gestion annonce</a></li>
-										<li><a href="#">Gestion membre</a></li>
+										<li><a href="admin_user.php">Gestion membre</a></li>
 									</ul>
 								</li>
 
