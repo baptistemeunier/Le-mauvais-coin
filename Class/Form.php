@@ -75,7 +75,7 @@ class Form
 	{
 		$option = "";
 		foreach($options as $k => $v){
-			$option .= $k.'='.$v.' ';
+			$option .= $k.'="'.$v.'" ';
 		}
 		return $option;
 	}
