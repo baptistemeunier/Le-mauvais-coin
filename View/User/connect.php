@@ -1,4 +1,4 @@
-<?php include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php include __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <div id="content" style="text-align: center">
 	<?= $form->create("#"); ?>
@@ -10,5 +10,5 @@
 	<?= $form->input('submit', array("type" => "submit", "value" => "Publier votre annonce !")); ?>
 	<?= $form->close(); ?>
 </div>
-<?php include 'footer.php'; // Appel du template contenant les balises <footer> ?>
+<?php include __ROOT__.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 
