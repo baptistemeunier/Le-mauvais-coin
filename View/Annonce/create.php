@@ -1,6 +1,6 @@
 <?php
 /** @var Form $form */
- include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
+ include __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <div class="grille">
 	<div class="collone collone-1"></div>
@@ -26,5 +26,5 @@
 		<?= $form->close(); ?>
 	</div>
 </div>
-<?php include 'footer.php'; // Appel du template contenant les balises <footer> ?>
+<?php include __ROOT__.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 
