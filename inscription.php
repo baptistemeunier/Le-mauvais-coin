@@ -14,7 +14,6 @@ if($App->getSession()->is_connect()){
 }
 
 if(!empty($_POST)){
-	dump($_POST);
 	if($_POST['email'] == "" || preg_match("%^[a-zA-Z0-9.]+@[a-zA-Z]+.[a-z.]+$%", $_POST['email']) == 0){
 		$App->getSession()->setMessage("L'email saisie est incorecte");
 	}else if($_POST['tel'] != "" && (!is_numeric($_POST['tel']) || strlen($_POST['tel']) != 10)){

@@ -17,10 +17,20 @@ if(!$App->getSession()->is_connect()){
 
 /* Si le formulaire est remplie */
 if(!empty($_POST)){
-	$App->getDBInstance()->AddAnnonce($_POST, $App->getSession()->getUser()->getId()); // On ajoute l'annonce
+	if(strlen($_POST['titre']) < 10){
+		$App->getSession()->setMessage("Le titre de votre annonce doit faire au moins 10 caractères");
+	}else if(strlen($_POST['description']) < 15){
+		$App->getSession()->setMessage("La description de votre annonce doit faire au moins 15 caractères");
+	}else{
+		$App->getDBInstance()->AddAnnonce($_POST, $App->getSession()->getUser()->getId()); // On ajoute l'annonce
+	}
 }
 
 $categories = $App->getDBInstance()->findAllCategories();
+$cat_divers = new Caterorie();
+$cat_divers->setId(NULL)
+	->setCategorie('Divers');
+$categories[] = $cat_divers;
 $villes     = $App->getDBInstance()->findAllVilles();
 
 echo $App->render("createannonce", array('form' => new Form($_POST), 'categories' => $categories, 'villes' => $villes));
