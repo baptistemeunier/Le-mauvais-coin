@@ -115,10 +115,12 @@ class Database
 	 */
 	public function findAnnonce($id)
 	{
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
+		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie, v.ville, v.cp, r.region, u.email, u.tel
 		FROM annonces AS a
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
+		LEFT JOIN regions AS r ON r.id = v.region_id
+		LEFT JOIN users AS u ON u.id = a.user_id
 		WHERE a.id = :id
 		ORDER BY date DESC');
 		$query->bindParam('id', $id, PDO::PARAM_INT);

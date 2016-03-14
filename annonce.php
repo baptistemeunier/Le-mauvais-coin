@@ -16,6 +16,7 @@ $annonce = $App->getDBInstance()->findAnnonce($id);
 
 $App->getTemplate()->set("titre", $annonce->getTitre());
 $App->getTemplate()->set("title", $annonce->getTitre().' - Le mauvais coin');
+
 /* Affichage de la page */
 echo $App->render("annonce", array('annonce' => $annonce));
 ?>

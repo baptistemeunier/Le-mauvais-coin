@@ -18,22 +18,22 @@
 		</div>
 		<div class="info-line">
 			<p class="name">Ville</p>
-			<p class="value"><?= $annonce->getVille() ?> XXXXX</p>
+			<p class="value"><?= $annonce->getVille() ?> <?= $annonce->getCp() ?></p>
 		</div>
 		<div class="info-line">
 			<p class="name">Région</p>
-			<p class="value">XXXXXXXXX</p>
+			<p class="value"><?= $annonce->getRegion() ?></p>
 		</div>
 		<div class="info-line">
 			<p class="inline">Information sur le vendeur</p>
 		</div>
 		<div class="info-line">
 			<p class="name">Mail</p>
-			<p class="value">XXXXXXXXX@XXX.com</p>
+			<p class="value"><?= $annonce->getEmail() ?></p>
 		</div>
 		<div class="info-line">
 			<p class="name">Téléphone</p>
-			<p class="value">0000000000</p>
+			<p class="value"><?= $annonce->getTel() ?></p>
 		</div>
 		<?php if($session->is_admin()): ?>
 			<div class="info-line">
