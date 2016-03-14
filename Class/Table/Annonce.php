@@ -40,7 +40,7 @@ class Annonce
 	protected $categorie_id;
 
 	/**
-	 * @var String
+	 * @var String|null
 	 */
 	protected $categorie;
 
@@ -48,6 +48,27 @@ class Annonce
 	 * @var String
 	 */
 	protected $ville;
+
+	/**
+	 * @var Int
+	 */
+	protected $cp;
+
+	/**
+	 * @var String
+	 */
+	protected $region;
+
+	/**
+	 * @var String
+	 */
+	protected $email;
+
+
+	/**
+	 * @var Int|null
+	 */
+	protected $tel;
 
 	/**
 	 * @return Int
@@ -190,6 +211,79 @@ class Annonce
 	public function setVille($ville)
 	{
 		$this->ville = $ville;
+		return $this;
+	}
+
+
+	/**
+	 * @return Int
+	 */
+	public function getCp()
+	{
+		return $this->cp;
+	}
+
+	/**
+	 * @param Int $cp
+	 * @return Annonce
+	 */
+	public function setCp($cp)
+	{
+		$this->cp = $cp;
+		return $this;
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getRegion()
+	{
+		return $this->region;
+	}
+
+	/**
+	 * @param String $region
+	 * @return Annonce
+	 */
+	public function setRegion($region)
+	{
+		$this->region = $region;
+		return $this;
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getEmail()
+	{
+		return $this->email;
+	}
+
+	/**
+	 * @param String $email
+	 * @return Annonce
+	 */
+	public function setEmail($email)
+	{
+		$this->email = $email;
+		return $this;
+	}
+
+	/**
+	 * @return Int|null
+	 */
+	public function getTel()
+	{
+		return ($this->tel)?$this->tel:"Non communiqué";
+	}
+
+	/**
+	 * @param Int|null $tel
+	 * @return Annonce
+	 */
+	public function setTel($tel)
+	{
+		$this->tel = $tel;
 		return $this;
 	}
 

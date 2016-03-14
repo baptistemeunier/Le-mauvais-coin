@@ -12,6 +12,13 @@ if($k%2 == 0): ?>
 			<header>
 				<a href="annonce.php?id=<?= $annonce->getId() ?>"><?= $annonce->getTitreFormat() ?></a>
 			</header>
+			<div style="
+			margin-top: 20px;
+			margin-left: 10%;
+			width: 80%;
+			height: 100px;
+			background-color: #0783f9">
+			</div>
 			<p class="info">
 				<?= $annonce->getVille() ?>
 				<span class="prix"><?= $annonce->getPrixFormat() ?></span>
