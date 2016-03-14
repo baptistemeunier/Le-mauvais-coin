@@ -1,18 +1,16 @@
-<?php include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php
+/** @var Form $form */
+ include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <div class="grille">
 	<div class="collone collone-1"></div>
-	<div class="collone collone">
+	<div class="collone collone-6">
 		<?= $form->create("#"); ?>
 		<label for="titre">Titre de l'annonce : </label>
 		<?= $form->input('titre', array('class' => 'inline')); ?><br />
 
 		<label for="description">Description de l'annonce : </label>
 		<?= $form->textarea('description'); ?><br />
-
-		<label for="email">Vos coordonées : </label>
-		<?= $form->input('email'); ?>
-		<?= $form->input('tel'); ?><br />
 
 		<label for="categorie">Catégorie de l'annonce : </label>
 		<?= $form->select('categorie', $categories); ?>

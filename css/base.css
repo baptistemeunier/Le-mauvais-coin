@@ -6,7 +6,6 @@
 /* Importation de la police Open Sans */
 @import url("font.css");
 
-
 /* Color of background */
 body{
     font-family: 'Open Sans', sans-serif;
@@ -23,6 +22,11 @@ body{
     padding: 0 auto;
     width: 80%;
     min-height: 1000px;
+}
+
+#content{
+    margin: 15px 20%;
+    width: 60%;
 }
 
 header ul {
@@ -48,7 +52,7 @@ header li a{
 }
 
 header li a:hover {
-    background-color: #E0BB15;
+    background-color: #5661d5;
 }
 
 header li ul{
@@ -63,37 +67,92 @@ header li:hover ul{
 
 h1{
     padding-left: 15px;
-    color: #E0BB15;
+    color: #5661d5;
 }
 /**
  * Systeme de grille
  */
 .grille{
-    margin-bottom: 15px;
+    margin: 5%;
 }
 .grille .collone{
     display: inline-block;
+    vertical-align:top;
 }
 .grille .collone-1{
     width: 8.33%;
 }
-.grille .collone-4{
-    width: 33.32%;
+.grille .collone-3{
+    width: 29%;
 }
+.grille .collone-4{
+    width: 39%;
+}
+
 .grille .collone-5{
-    width: 41.65%;
+    width: 49%;
 }
 .grille .collone-6{
-    width: 49.98%;
+    width: 59%;
+}
+.info-line{
+    width: 100%;
+
+}
+.info-line p{
+    float: left;
+    margin: 0;
+    padding-left: 4%;
+    border-top: 1px #D3D3D3 solid;
+    border-right: 1px #D3D3D3 solid;
+    line-height: 40px;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+.info-line p:first-child {
+    border-left: 1px #D3D3D3 solid;
+}
+.info-line:last-child p{
+    border-bottom: 1px #D2D2D2 solid;
+}
+.info-line .inline{
+    font-weight: 500;
+    background-color: rgba(210, 210, 210, 0.32);
+    width: 95%;
+    color: #5661d5;
+}
+.info-line .inline-btn{
+    background-color: #FFF;
+    width: 95%;
+    text-align: center;
+}
+
+.info-line .name{
+    background-color: rgba(210, 210, 210, 0.32);
+    width: 25%;
+}
+.info-line .value{
+    width: 65%;
+}
+
+.btn{
+    background-color: #F9780B;
+    display: inline-block;
+    line-height: 30px;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0 10px;
+    text-decoration: none;
+    color: #000;
 }
 
 article{
-    border: #E0BB15 1px solid;
+    border: #5661d5 1px solid;
     position: relative;
 }
 article footer{
     background-color: #434343;
-    border: #E0BB15 1px solid;
+    border: #5661d5 1px solid;
 }
 article footer p{
     font-weight: 300;
@@ -110,7 +169,7 @@ article header{
 }
 article a{
     font-weight: 400;
-    color: #E0BB15;
+    color: #5661d5;
     text-decoration: none;
     margin: 5px;
 }
@@ -121,11 +180,32 @@ article .info{
     font-weight:300;
 }
 
+
 .prix{
     font-weight: 400;
     position: absolute;
     right: 15%;
     bottom: 40px;
     font-size: 2em;
-    color: #E0BB15;
+    color: #5661d5;
+}
+
+.message-global{
+    margin: 15px 20%;
+    width: 60%;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+}
+.error{
+    background-color: rgba(249, 8, 14, 0.4);
+}
+.valid{
+    display: block;
+    background-color: rgba(111, 249, 19, 0.4);
+}
+.attention{
+    display: block;
+    background-color: rgba(249, 230, 0, 0.4);
 }

@@ -2,7 +2,8 @@
 /**
  * header.php
  * Fichier contenant les balises <head> <header> <h1>
- */
+ * @var Session $session
+ **/
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,10 +28,31 @@
 								<li><a href="recherche.php">Recherche avancée</a></li>
 							</ul>
 						</li>
-						<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>
+						<li><a href="stat.php">Statistiques</a></li>
+						<?php if($session->is_connect()): ?>
+							<li style="float:right"><a href="connect.php">Déconnexion</a></li>
+							<?php if($session->is_Admin()): ?>
+								<li style="float:right"><a href="#">Panel Admin</a>
+									<ul>
+										<li><a href="#">Gestion annonce</a></li>
+										<li><a href="admin_user.php">Gestion membre</a></li>
+									</ul>
+								</li>
 
+							<?php endif; ?>
+							<li style="float:right"><a href="create.php">Ajoutez votre annonce !</a></li>
+						<?php else: ?>
+							<li style="float:right"><a href="connect.php">Connexion</a></li>
+							<li style="float:right"><a href="inscription.php">Inscription</a></li>
+						<?php endif; ?>
 					</ul>
 				</nav>
 			</header>
 
 			<h1><?= (isset($titre))?$titre:'Bienvenue sur le Mauvais Coin'?></h1>
+
+			<?php foreach($session->getMessages() as $type => $message): ?>
+				<div class="message-global <?= $type ?>">
+					<?= $message ?>
+				</div>
+			<?php endforeach; ?>

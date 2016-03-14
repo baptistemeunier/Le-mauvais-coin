@@ -18,11 +18,24 @@ class App
 	 **/
 	private $database;
 
+
+	/** Variable de configuration
+	 * @var Array $config
+	 **/
+	private $config;
+
+	/** Instance de la classe Session
+	 * @var Session $session
+	 **/
+	private $session;
+
 	function __construct()
 	{
 		/* Appel les classes nécessaire aux pages */
-		$this->template = new Template("View/");
-		$this->database = new Database('localhost', 'projet', 'root', '');
+		$this->config = include("config.php");
+		$this->template = new Template($this->config['dir_view']);
+		$this->session = new Session();
+		$this->database = new Database($this->config['db_host'], $this->config['db_name'], $this->config['db_login'], $this->config['db_pass']);
 	}
 
 	/**
@@ -44,5 +57,49 @@ class App
 	{
 		return $this->database;
 	}
+
+	/**
+	 * Fonction getTemplate
+	 * Permet de recupérer l'instance de Template
+	 * @return Session
+	 */
+	public function getSession()
+	{
+		return $this->session;
+	}
+
+	public function render($file, $data = array())
+	{
+		$this->template->set('session', $this->session);
+		return $this->template->render($file, $data);
+	}
+
+	/**
+	 * @param String $email L'email du compte
+	 * @param String $mdp Le mot de passe du compte
+	 * @return Bool true si il connecté false sinon
+	 */
+	public function connectUser($email, $mdp)
+	{
+		$user = $this->database->findUser($email);
+		if($user === false){
+			$this->session->setMessage("<b>Connexion imposible !</b> Cette email ne corespond à aucun compte");
+		}else{
+			if($user->getMdp()==hash('sha256', $mdp)){
+				$this->session->setMessage("<b>Connexion reussi !</b> Vous étes maintenant connecté", 'valid');
+				$this->session->set("_user", serialize($user));
+				return true;
+			}
+			$this->session->setMessage("<b>Connexion imposible !</b> Mot de passe incorect");
+		}
+		return false;
+	}
+
+	public function disconnectUser()
+	{
+		$this->session->setMessage("Vous étes maintenant déconnecté", 'valid');
+		unset($_SESSION['_user']);
+	}
+
 }
 ?>
