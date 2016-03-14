@@ -2,7 +2,8 @@
 /**
  * @var Form $formN
  */
-include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
+include __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header>
+?>
 
 
 <div class="grille">
@@ -23,5 +24,5 @@ include 'header.php'; // Appel du template contenant les balises <head>, <header
 		<?= $form->close(); ?>
 	</div>
 </div>
-<?php include 'footer.php'; // Appel du template contenant les balises <footer> ?>
+<?php include __ROOT__.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 
