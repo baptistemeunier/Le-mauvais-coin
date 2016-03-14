@@ -25,7 +25,7 @@ if($k%2 == 0): ?>
 			</p>
 			<footer>
 				<p>
-					<a href="categorie.php?cat=<?= $annonce->getCategorieId() ?>"> <?= $annonce->getCategorieFormat() ?> </a>
+					<a href="?page=search/categories&cat=<?= ($annonce->getCategorieId())?$annonce->getCategorieId():"0" ?>"> <?= $annonce->getCategorieFormat() ?> </a>
 					<span style="float: right;"><?= $annonce->getDateFormat() ?></span>
 				</p>
 			</footer>

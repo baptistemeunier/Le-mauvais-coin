@@ -8,7 +8,7 @@
  **/
 class SearchController extends App
 {
-	public function categorieAction(){
+	public function categoriesAction(){
 		$categorie = (isset($_GET['cat']) && is_numeric($_GET['cat']))?$_GET['cat']:null;
 
 		if($categorie){ // Si une categorie est choisie

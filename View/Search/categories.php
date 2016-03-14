@@ -2,7 +2,7 @@
 
 <ul>
 	<?php foreach($categories as $k => $categorie): ?>
-	<li><a href="?page=search/categorie&cat=<?= $categorie->getId() ?>"><?= $categorie->getCategorie() ?></a></li>
+	<li><a href="?page=search/categories&cat=<?= $categorie->getId() ?>"><?= $categorie->getCategorie() ?></a></li>
 	<?php endforeach; ?>
 </ul>
 
