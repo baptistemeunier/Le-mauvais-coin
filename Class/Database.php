@@ -29,7 +29,7 @@ class Database
 	}
 
 	public function findAllAnnonces(){
-		$query = $this->db->query('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
+		$query = $this->db->query('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville
 		FROM annonces AS a
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
@@ -45,7 +45,7 @@ class Database
 			$temp[] = ' '.$field."= ".$value.' ';
 		}
 		$where = "WHERE ".implode("AND", $temp);
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie , v.ville
+		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville
 		FROM annonces AS a
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id
@@ -59,14 +59,14 @@ class Database
 	}
 
 	public function findAllCategories(){
-		$query = $this->db->query('SELECT * FROM categories');
+		$query = $this->db->query('SELECT id, nom as categorie FROM categories');
 		$categories = $query->fetchAll(PDO::FETCH_CLASS, "Caterorie");
 		$query->closeCursor();
 		return $categories;
 	}
 
 	public function findAllVilles(){
-		$query = $this->db->query('SELECT * FROM villes');
+		$query = $this->db->query('SELECT id, nom as ville FROM villes');
 		$villes = $query->fetchAll(PDO::FETCH_CLASS, "Ville");
 		$query->closeCursor();
 		return $villes;
@@ -74,7 +74,7 @@ class Database
 
 	public function findAllRegions()
 	{
-		$query = $this->db->query('SELECT * FROM regions');
+		$query = $this->db->query('SELECT id, nom as region FROM regions');
 		$regions = $query->fetchAll(PDO::FETCH_CLASS, "Region");
 		$query->closeCursor();
 		return $regions;
@@ -92,6 +92,7 @@ class Database
 		$query->bindParam('categorie_id', $data['categorie'], PDO::PARAM_STR);
 		$query->bindParam('ville_id', $data['ville'], PDO::PARAM_STR);
 		$query->execute();
+		return $this->db->lastInsertId();
 	}
 
 	/** Fonction findUser
@@ -149,6 +150,34 @@ class Database
 		$query->bindParam('tel', $user['tel'], PDO::PARAM_STR);
 		$query->bindParam('mdp', hash('sha256', $user['mdp']), PDO::PARAM_STR);
 		$query->execute();
+		$query->closeCursor();
+	}
+
+	public function addVille($nom, $cp, $region)
+	{
+		$query = $this->db->prepare('INSERT INTO ville(ville, cp, region_id) VALUES (:nom, :cp, :region_id)');
+		$query->bindParam('nom', $nom, PDO::PARAM_STR);
+		$query->bindParam('cp', $cp, PDO::PARAM_STR);
+		$query->bindParam('region_id', $region, PDO::PARAM_STR);
+		$query->execute();
+		$query->closeCursor();
+	}
+
+	public function AddRegion($region)
+	{
+		$query = $this->db->query('SELECT id FROM regions WHERE region=:nom');
+		$query->bindParam('nom', $region, PDO::PARAM_STR);
+		$query->execute();
+		$region = $query->fetch();
+		$query->closeCursor();
+		if($region){
+			return $region['id'];
+		}
+		$query = $this->db->prepare('INSERT INTO regions(region) VALUES (:nom)');
+		$query->bindParam('nom', $region, PDO::PARAM_STR);
+		$query->execute();
+		$query->closeCursor();
+		return $this->db->lastInsertId();
 
 	}
 

@@ -34,8 +34,7 @@ INSERT INTO categories(id, nom) VALUES
 (8, "Services"),
 (9, "Décoration"),
 (10, "Image & son"),
-(11, "Véhicules"),
-(12, "Instruments de Musique");
+(11, "Instruments de Musique");
 
 INSERT INTO users(id, email, tel) VALUES
 (1, "coq@gmoul.com", NULL),
@@ -53,11 +52,11 @@ INSERT INTO users(id, email, tel) VALUES
 (13, "jean.rapetou@magouille.fr", NULL),
 (14, "bour.geois@riche.dollar", 9999999999);
 
-INSERT INTO annonces(id, nom, description, prix, user_id, date, categorie_id, ville_id) VALUES (1, "coq de compétition", "donne coq de compétition, peu servi, dans son jus", 0, 1, "2016-02-01", 1, 1),
+INSERT INTO annonces(id, titre, description, prix, user_id, date, categorie_id, ville_id) VALUES (1, "coq de compétition", "donne coq de compétition, peu servi, dans son jus", 0, 1, "2016-02-01", 1, 1),
 (2, "ordinateur transportable", "ordinateur transportable 23 pouces de marque soni, remis à zéro pour la vente", 1000, 2, "2016-02-01", 2, 2),
 (3, "lit à barreaux", "lit bébé à barreaux blanc, vendu sans matelas et sans bébé", 80, 2, "2016-02-01", 3, 2),
 (4, "appartment au bord de la mer", "appartement T4 en bord de mer pour sénor avertis, trois chambres, 2 caves, 5 places de parking et piste d'attérissage pour hélicoptère", 450000, 3, "2016-02-05", 4, 3),
-(5, "cartes pokémon collector ultra rares", "lot de 5 cartes pokémon rares comprenant un pikachou et deux rondoudons", "faire offre", 4, "2016-02-04", 5, 4),
+(5, "cartes pokémon collector ultra rares", "lot de 5 cartes pokémon rares comprenant un pikachou et deux rondoudons", NULL, 4, "2016-02-04", 5, 4),
 (6, "Sous vétements petit navire", "ensemble de culottes blanches de la marque petit navire, produit absolument original, quelques taches sont présentes mais rien de grave", 10, 4, "2016-02-05", 6, 4),
 (7, "Fiat 500 aménagée en Camping Car", "Fiat 500, carte grise 12 places aménagée camping car avec lit 3 places, auvent et evier/frigo intégré dans la banquette arrière", 15000, 5, "2016-02-05", 7, 5),
 (8, "Cours particulier de Nyotaimori", "propose cours particulier de Nyotaimori, avec ou sens wasabi", 100, 6, "2016-02-05", 8, 6),
@@ -71,5 +70,5 @@ INSERT INTO annonces(id, nom, description, prix, user_id, date, categorie_id, vi
 (16, "T-shirt britney spears", "Cause déménagement, je cède à contre coeur, snif, mon t-shirt collector Britney Spears, baby one more time special tour. Objet rare sur le marché, faire offre en accord avec sa valeur sentimentale", NULL, 12, "2016-02-08", 6, 11),
 (17, "4x4 de luxe", "Suite à un controle fiscal, je vend mon 4x4 de luxe toutes options : accoudoirs chauffants, jantes en bois de chène, aileron sport en titane-carbone, etc.", 45000, 13, "2016-02-08", 7, 12),
 (18, "maison bourgeoise", "Madame et moi-meme souhaiterions nous séparer de notre pied à terre nantais. Il s'agit d'une maison bourgeoise avec 12 chambres, 6 salles de bain et 1 canapé blanc en cuir de vachette", 1000000, 14, "2016-02-08", 4, 1),
-(19, "kazou numérique", "vends un kazou numérique fender à double frete", 200, 9, "2016-02-09", 12, 8),
+(19, "kazou numérique", "vends un kazou numérique fender à double frete", 200, 9, "2016-02-09", 11, 8),
 (20, "ordinateur de landing", "vend cause double emploi, ordinateur de landing de compétition avec clavier, écran,cables et webcam.Très peu servi, sauf projet Java", 1000, 5, "2016-02-05", 2, 5);
