@@ -79,4 +79,12 @@ class Form
 		}
 		return $option;
 	}
+
+	public function checkbox($name, $value, $options = array())
+	{
+		if(isset($this->data[$name])){
+			$options['checked'] = "checked";
+		}
+		return '<input name="'.$name.'" type="checkbox" '.$this->getOptions($options).'> '.$value;
+	}
 }

@@ -42,10 +42,24 @@ class AnnonceController extends App
 			/* On verifie */
 			if(strlen($_POST['titre']) < 10){ // Si la taille de titre >= 10
 				$this->getSession()->setMessage("Le titre de votre annonce doit faire au moins 10 caractères");
-			}else if(strlen($_POST['description']) < 15){ // Si la taille de la desctriction >= 15
+			}else if(strlen($_POST['description']) < 15) { // Si la taille de la desctriction >= 15
 				$this->getSession()->setMessage("La description de votre annonce doit faire au moins 15 caractères");
+			}else if(isset($_POST['create_ville']) && strlen($_POST['ville_nom']) < 4){ // Si il ajoute une ville et que son nom est trop court
+				$this->getSession()->setMessage("Merci de saisir une ville correcte");
+			}else if(isset($_POST['create_ville']) && (strlen($_POST['ville_cp']) != 5 || !is_numeric($_POST['ville_cp']))){ // Si il ajoute une ville et que son code postal est incorect
+				$this->getSession()->setMessage("Merci de saisir un code postal correct");
+			}else if(isset($_POST['create_ville']) && strlen($_POST['ville_region']) < 4){ // Si il ajoute une ville et que sa region est trop courte
+				$this->getSession()->setMessage("Merci de saisir une region correcte");
 			}else{
-				$this->getDBInstance()->AddAnnonce($_POST, $this->getSession()->getUser()->getId()); // On ajoute l'annonce
+				//if(isset($_POST['create_ville'])){
+				//$region_id = $this->getDBInstance()->AddRegion($_POST['ville_region']); // On ajoute la region (si elle existe on nous envoi l'id)
+					//	$this->getDBInstance()->addVille($_POST['ville_nom'], $_POST['ville_cp'], region_id);
+				//}
+				$this->getSession()->setMessage("Annonce en ligne !", "valid");
+
+				$id = $this->getDBInstance()->AddAnnonce($_POST, $this->getSession()->getUser()->getId()); // On ajoute l'annonce
+ 				header('Location: index.php?page=annonce/view&id='.$id); // On le redirige vers l'annoncne
+				exit();
 			}
 		}
 

@@ -145,7 +145,7 @@ class Database
 	public function AddUser($user)
 	{
 		$user['tel'] = ($user['tel'] == "")?$user['tel']:null;
-		$query = $this->db->prepare('INSERT INTO users(email, tel, mdp, admin) VALUES (:email, :tel, :mdp, 0)');
+		$query = $this->db->prepare('INSERT INTO users(email, tel, mdp) VALUES (:email, :tel, :mdp)');
 		$query->bindParam('email', $user['email'], PDO::PARAM_STR);
 		$query->bindParam('tel', $user['tel'], PDO::PARAM_STR);
 		$query->bindParam('mdp', hash('sha256', $user['mdp']), PDO::PARAM_STR);
@@ -155,7 +155,7 @@ class Database
 
 	public function addVille($nom, $cp, $region)
 	{
-		$query = $this->db->prepare('INSERT INTO ville(ville, cp, region_id) VALUES (:nom, :cp, :region_id)');
+		$query = $this->db->prepare('INSERT INTO ville(nom, cp, region_id) VALUES (:nom, :cp, :region_id)');
 		$query->bindParam('nom', $nom, PDO::PARAM_STR);
 		$query->bindParam('cp', $cp, PDO::PARAM_STR);
 		$query->bindParam('region_id', $region, PDO::PARAM_STR);
@@ -173,7 +173,7 @@ class Database
 		if($region){
 			return $region['id'];
 		}
-		$query = $this->db->prepare('INSERT INTO regions(region) VALUES (:nom)');
+		$query = $this->db->prepare('INSERT INTO regions(nom) VALUES (:nom)');
 		$query->bindParam('nom', $region, PDO::PARAM_STR);
 		$query->execute();
 		$query->closeCursor();
