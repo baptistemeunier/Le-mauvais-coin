@@ -63,28 +63,6 @@ class Database
 		return $user;
 	}
 
-	/**
-	 * @return array
-	 */
-	public function findUsers()
-	{
-		$query = $this->db->query('SELECT * FROM users');
-		$users = $query->fetchAll(PDO::FETCH_CLASS, 'User');
-		$query->closeCursor();
-		return $users;
-	}
-
-	public function AddUser($user)
-	{
-		$user['tel'] = ($user['tel'] == "")?$user['tel']:null;
-		$query = $this->db->prepare('INSERT INTO users(email, tel, mdp) VALUES (:email, :tel, :mdp)');
-		$query->bindParam('email', $user['email'], PDO::PARAM_STR);
-		$query->bindParam('tel', $user['tel'], PDO::PARAM_STR);
-		$query->bindParam('mdp', hash('sha256', $user['mdp']), PDO::PARAM_STR);
-		$query->execute();
-		$query->closeCursor();
-	}
-
 	public function addVille($nom, $cp, $region)
 	{
 		$query = $this->db->prepare('INSERT INTO ville(nom, cp, region_id) VALUES (:nom, :cp, :region_id)');

@@ -8,18 +8,6 @@
  */
 class Regions
 {
-	private $db;
-
-	/**
-	 * Annonces constructor.
-	 * @param $db
-	 */
-	public function __construct($db)
-	{
-		$this->db = $db;
-	}
-
-	
 	public function findAll()
 	{
 		$query = $this->db->query('SELECT id, nom as region FROM regions');

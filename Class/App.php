@@ -69,7 +69,7 @@ class App
 	/**
 	 * Fonction getDBInstance
 	 * Permet de recupérer l'instance de Database
-	 * @return Database
+	 * @return Annonces|Categories|Regions|Users|Villes
 	 */
 	protected function getDBInstance($model)
 	{
@@ -104,6 +104,8 @@ class App
 		if($user === false){
 			$this->session->setMessage("<b>Connexion imposible !</b> Cette email ne corespond à aucun compte");
 		}else{
+			dump($user->getMdp());
+			dump(hash('sha256', $mdp));
 			if($user->getMdp()==hash('sha256', $mdp)){
 				$this->session->setMessage("<b>Connexion reussi !</b> Vous étes maintenant connecté", 'valid');
 				$this->session->set("_user", serialize($user));
