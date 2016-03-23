@@ -1,5 +1,4 @@
-
--- Création de la table users 
+-- Création de la table users
 
 CREATE TABLE users(
 		id INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,

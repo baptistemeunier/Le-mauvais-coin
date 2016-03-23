@@ -10,7 +10,7 @@ class AnnonceController extends App
 {
 	public function indexAction(){
 		/* Récuperation des annonces */
-		$annonces = $this->getDBInstance()->findAllAnnonces();
+		$annonces = $this->getDBInstance('Annonces')->findAll();
 		/* Affichage de la page */
 		return $this->render("Annonce/index", array('annonces' => $annonces));
 	}
@@ -19,7 +19,7 @@ class AnnonceController extends App
 		$id = (isset($_GET['id']) && is_numeric($_GET['id']))?$_GET['id']:1;
 
 		/* Récuperation de l'annonce */
-		$annonce = $this->getDBInstance()->findAnnonce($id);
+		$annonce = $this->getDBInstance("Annonces")->find($id);
 
 		/* Envoie du titre à la vue */
 		$this->getTemplate()->set("titre", $annonce->getTitre());

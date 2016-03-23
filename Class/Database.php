@@ -28,15 +28,8 @@ class Database
 		}
 	}
 
-	public function findAllAnnonces(){
-		$query = $this->db->query('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville
-		FROM annonces AS a
-		LEFT JOIN categories AS c ON c.id = a.categorie_id
-		LEFT JOIN villes AS v ON v.id = a.ville_id
-		ORDER BY date DESC');
-		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
-		$query->closeCursor();
-		return $annonces;
+	public function getDB(){
+		return $this->db;
 	}
 
 	public function findAnnoncesBy($conditions){

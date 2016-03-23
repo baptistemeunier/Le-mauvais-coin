@@ -71,9 +71,10 @@ class App
 	 * Permet de recupérer l'instance de Database
 	 * @return Database
 	 */
-	protected function getDBInstance()
+	protected function getDBInstance($model)
 	{
-		return $this->database;
+
+		return new $model($this->database->getDB());
 	}
 
 	/**
