@@ -47,5 +47,23 @@ class Annonces
 		return $annonce;
 	}
 
+	public function findBy($conditions){
+		$temp = array();
+		foreach($conditions as $field => $value){
+			$temp[] = ' '.$field."= ".$value.' ';
+		}
+		$where = "WHERE ".implode("AND", $temp);
+		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville
+		FROM annonces AS a
+		LEFT JOIN categories AS c ON c.id = a.categorie_id
+		LEFT JOIN villes AS v ON v.id = a.ville_id
+		 '.$where.'
+		ORDER BY date DESC');
+		$query->bindParam('id', $id, PDO::PARAM_INT);
+		$query->execute();
+		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
+		$query->closeCursor();
+		return $annonces;
+	}
 
 }

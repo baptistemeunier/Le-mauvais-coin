@@ -32,46 +32,6 @@ class Database
 		return $this->db;
 	}
 
-	public function findAnnoncesBy($conditions){
-		$temp = array();
-		foreach($conditions as $field => $value){
-			$temp[] = ' '.$field."= ".$value.' ';
-		}
-		$where = "WHERE ".implode("AND", $temp);
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville
-		FROM annonces AS a
-		LEFT JOIN categories AS c ON c.id = a.categorie_id
-		LEFT JOIN villes AS v ON v.id = a.ville_id
-		 '.$where.'
-		ORDER BY date DESC');
-		$query->bindParam('id', $id, PDO::PARAM_INT);
-		$query->execute();
-		$annonces = $query->fetchAll(PDO::FETCH_CLASS, 'Annonce');
-		$query->closeCursor();
-		return $annonces;
-	}
-
-	public function findAllCategories(){
-		$query = $this->db->query('SELECT id, nom as categorie FROM categories');
-		$categories = $query->fetchAll(PDO::FETCH_CLASS, "Caterorie");
-		$query->closeCursor();
-		return $categories;
-	}
-
-	public function findAllVilles(){
-		$query = $this->db->query('SELECT id, nom as ville FROM villes');
-		$villes = $query->fetchAll(PDO::FETCH_CLASS, "Ville");
-		$query->closeCursor();
-		return $villes;
-	}
-
-	public function findAllRegions()
-	{
-		$query = $this->db->query('SELECT id, nom as region FROM regions');
-		$regions = $query->fetchAll(PDO::FETCH_CLASS, "Region");
-		$query->closeCursor();
-		return $regions;
-	}
 
 	public function AddAnnonce($data, $id)
 	{
@@ -101,27 +61,6 @@ class Database
 		$user = $query->fetchObject("User");
 		$query->closeCursor();
 		return $user;
-	}
-
-	/**
-	 * @param $id
-	 * @return false|Annonce
-	 */
-	public function findAnnonce($id)
-	{
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.categorie, v.ville, v.cp, r.region, u.email, u.tel
-		FROM annonces AS a
-		LEFT JOIN categories AS c ON c.id = a.categorie_id
-		LEFT JOIN villes AS v ON v.id = a.ville_id
-		LEFT JOIN regions AS r ON r.id = v.region_id
-		LEFT JOIN users AS u ON u.id = a.user_id
-		WHERE a.id = :id
-		ORDER BY date DESC');
-		$query->bindParam('id', $id, PDO::PARAM_INT);
-		$query->execute();
-		$annonce = $query->fetchObject('Annonce');
-		$query->closeCursor();
-		return $annonce;
 	}
 
 	/**

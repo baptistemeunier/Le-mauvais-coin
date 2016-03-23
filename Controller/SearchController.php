@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: baptiste
- * Date: 14/03/16
- * Time: 20:35
- **/
+
 class SearchController extends App
 {
 	public function categoriesAction(){
@@ -13,11 +8,11 @@ class SearchController extends App
 
 		if($categorie){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
-			$annonces = $this->getDBInstance()->findAnnoncesBy(array('a.categorie_id' => $categorie));
+			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.categorie_id' => $categorie));
 			return $this->render("Annonce/index", array('titre' => "Recherche par categorie", 'annonces' => $annonces));
 		}else{
 			/* Sinon on récupére toute les categories */
-			$categories = $this->getDBInstance()->findAllCategories();
+			$categories = $this->getDBInstance("Categories")->findAll();
 			return $this->render("Search/categories", array('titre' => "Liste des categories disponible", 'categories' => $categories));
 		}
 	}
@@ -27,11 +22,11 @@ class SearchController extends App
 
 		if($ville){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
-			$annonces = $this->getDBInstance()->findAnnoncesBy(array('a.ville_id' => $ville));
+			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.ville_id' => $ville));
 			return $this->render("Annonce/index", array('titre' => "Recherche par ville", 'annonces' => $annonces));
 		}else{
 			/* Sinon on récupére toute les villes */
-			$villes = $this->getDBInstance()->findAllVilles();
+			$villes = $this->getDBInstance("Villes")->findAll();
 			return $this->render("Search/villes", array('titre' => "Liste des villes disponible", 'villes' => $villes));
 		}
 
@@ -40,9 +35,9 @@ class SearchController extends App
 	public function avanceAction(){
 
 		/* Selection de toute les categories, villes, regions */
-		$categories = $this->getDBInstance()->findAllCategories();
-		$villes     = $this->getDBInstance()->findAllVilles();
-		$regions    = $this->getDBInstance()->findAllRegions();
+		$categories = $this->getDBInstance("Categories")->findAll();
+		$villes     = $this->getDBInstance("Villes")->findAll();
+		$regions    = $this->getDBInstance("Regions")->findAll();
 		$annonces   = array(); // Va contenir les annonces trouvée
 
 		if(!empty($_POST)){ // Si des donnée son postée
@@ -64,7 +59,7 @@ class SearchController extends App
 				$champs['a.prix <'] = $_POST['prix-max'];
 			}
 			/* On cherche les annonces */
-			$annonces = $this->getDBInstance()->findAnnoncesBy($champs);
+			$annonces = $this->getDBInstance("Annonces")->findBy($champs);
 		}
 
 		echo $this->render("Search/avance", array('form' => new Form($_POST),'categories' => $categories, 'villes' => $villes, 'regions' => $regions, 'annonces' => $annonces));
