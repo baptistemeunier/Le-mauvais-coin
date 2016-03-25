@@ -1,6 +1,6 @@
 <?php include __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
-<ul>
+<ul id="search">
 	<?php foreach($villes as $k => $ville): ?>
 	<li><a href="?page=search/villes&ville=<?= $ville->getId() ?>"><?= $ville->getVille() ?></a></li>
 	<?php endforeach; ?>

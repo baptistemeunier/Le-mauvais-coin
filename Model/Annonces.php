@@ -32,7 +32,7 @@ class Annonces
 	 */
 	public function find($id)
 	{
-		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie, v.nom as ville, v.cp, r.id as region, u.email, u.tel
+		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie, v.nom as ville, v.cp, r.nom as region, u.email, u.tel
 		FROM annonces AS a
 		LEFT JOIN categories AS c ON c.id = a.categorie_id
 		LEFT JOIN villes AS v ON v.id = a.ville_id

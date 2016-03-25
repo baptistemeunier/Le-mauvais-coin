@@ -29,6 +29,18 @@ body{
     width: 60%;
 }
 
+#search{
+    line-height: 1.6;
+}
+#search a{
+    text-decoration: none;
+    color: #000;
+}
+#search a:hover{
+    color: #5661d5;
+}
+
+
 header ul {
     list-style-type: none;
     margin: 0;
