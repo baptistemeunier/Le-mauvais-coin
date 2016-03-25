@@ -63,16 +63,6 @@ class Database
 		return $user;
 	}
 
-	public function addVille($nom, $cp, $region)
-	{
-		$query = $this->db->prepare('INSERT INTO ville(nom, cp, region_id) VALUES (:nom, :cp, :region_id)');
-		$query->bindParam('nom', $nom, PDO::PARAM_STR);
-		$query->bindParam('cp', $cp, PDO::PARAM_STR);
-		$query->bindParam('region_id', $region, PDO::PARAM_STR);
-		$query->execute();
-		$query->closeCursor();
-	}
-
 	public function AddRegion($region)
 	{
 		$query = $this->db->query('SELECT id FROM regions WHERE region=:nom');

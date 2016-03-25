@@ -12,7 +12,7 @@ class Regions
 
 	/**
 	 * Annonces constructor.
-	 * @param $db
+	 * @param PDO $db
 	 */
 	public function __construct($db)
 	{
@@ -27,4 +27,23 @@ class Regions
 		return $regions;
 	}
 
+	public function isExist($regionNom){
+		$query = $this->db->prepare('SELECT id FROM regions WHERE nom = :nom');
+		$query->bindParam('nom', $regionNom, PDO::PARAM_STR);
+		$query->execute();
+		$count = $query->rowCount();
+		$region = $query->fetch();
+		$query->closeCursor();
+		// Le champs villes.nom est unique donc $count vaut soit 0 soit 1
+		return ($count == 0)?false:$region['id'];
+	}
+
+	public function add($nom){
+		$query = $this->db->prepare('INSERT INTO regions(nom) VALUES (:nom)');
+		$query->bindParam('nom', $nom, PDO::PARAM_STR);
+		$query->execute();
+		$query->closeCursor();
+		return $this->db->lastInsertId();
+
+	}
 }

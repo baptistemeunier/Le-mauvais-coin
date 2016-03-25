@@ -66,4 +66,20 @@ class Annonces
 		return $annonces;
 	}
 
+	public function add($data, $id)
+	{
+		$prix = ($data['prix'] == "")?null:$data['prix'];
+		$cat = ($data['categorie'] == 0)?null:$data['categorie'];
+		$query = $this->db->prepare('INSERT INTO annonces(titre, description, prix, user_id, date, categorie_id, ville_id) VALUES (:titre, :description, :prix, :user_id, :date, :categorie_id, :ville_id)');
+		$query->bindParam('titre', $data['titre'], PDO::PARAM_STR);
+		$query->bindParam('description', $data['description'], PDO::PARAM_STR);
+		$query->bindParam('prix', $prix, PDO::PARAM_STR);
+		$query->bindParam('user_id', $id, PDO::PARAM_STR);
+		$query->bindParam('date', date("Y-m-d"), PDO::PARAM_STR);
+		$query->bindParam('categorie_id', $cat, PDO::PARAM_STR);
+		$query->bindParam('ville_id', $data['idVille'], PDO::PARAM_STR);
+		$query->execute();
+		return $this->db->lastInsertId();
+	}
+
 }
