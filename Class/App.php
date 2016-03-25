@@ -51,9 +51,15 @@ class App
 	/**
 	 * @return Array
 	 */
-	public function getParams()
+	public function getParams($key = null)
 	{
-		return $this->params;
+		if(!$key){
+			return $this->params;
+		}
+		if(isset($this->params[$key])){
+			return $this->params[$key];
+		}
+		return false;
 	}
 
 	/**

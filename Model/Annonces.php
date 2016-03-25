@@ -6,7 +6,7 @@ class Annonces
 
 	/**
 	 * Annonces constructor.
-	 * @param $db
+	 * @param PDO $db
 	 */
 	public function __construct($db)
 	{
@@ -79,7 +79,14 @@ class Annonces
 		$query->bindParam('categorie_id', $cat, PDO::PARAM_STR);
 		$query->bindParam('ville_id', $data['idVille'], PDO::PARAM_STR);
 		$query->execute();
+		$query->closeCursor();
 		return $this->db->lastInsertId();
 	}
 
+	public function delete($id){
+		$query = $this->db->prepare('DELETE FROM annonces WHERE id=:id');
+		$query->bindParam('id', $id, PDO::PARAM_INT);
+		$query->execute();
+
+	}
 }
