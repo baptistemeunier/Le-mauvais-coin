@@ -69,11 +69,12 @@ class App
 	/**
 	 * Fonction getDBInstance
 	 * Permet de recupérer l'instance de Database
-	 * @return Database
+	 * @return Annonces|Categories|Regions|Users|Villes
 	 */
-	protected function getDBInstance()
+	protected function getDBInstance($model)
 	{
-		return $this->database;
+
+		return new $model($this->database->getDB());
 	}
 
 	/**

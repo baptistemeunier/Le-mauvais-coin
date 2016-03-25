@@ -12,6 +12,8 @@ function __autoload($classe)
 	 */
 	if (file_exists("Class/" . $classe . ".php")){
 		include "Class/" . $classe . ".php";
+	}else if(file_exists("Model/" . $classe . ".php")){
+		include "Model/" . $classe . ".php";
 	}else if(file_exists("Class/Table/" . $classe . ".php")){
 		include "Class/Table/" . $classe . ".php";
 	}else if(file_exists("Controller/" . $classe . ".php")){

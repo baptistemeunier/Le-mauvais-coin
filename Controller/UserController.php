@@ -22,8 +22,12 @@ class UserController extends App
 				$this->getSession()->setMessage("Le numero de téléphone est incorect");
 			}else if($_POST['mdp'] != $_POST['confirm'] || $_POST['mdp'] == ""){
 				$this->getSession()->setMessage("Les mots de passe ne coresponde pas");
+			}else{
+				$this->getSession()->setMessage("Vous êtes maintenant inscrit !", "valid");
+				$this->getDBInstance("Users")->add($_POST);
+				header('Location: index.php'); // On le redirige
+				exit();
 			}
-			$this->getDBInstance()->AddUser($_POST);
 		}
 
 		/* Affichage de la page */
@@ -60,7 +64,7 @@ class UserController extends App
 			exit();
 		}
 
-		$users = $this->getDBInstance()->findUsers();
+		$users = $this->getDBInstance("Users")->findAll();
 
 		/* Affichage de la page */
 		return $this->render("User/admin", array('users' => $users));

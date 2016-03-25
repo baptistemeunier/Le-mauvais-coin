@@ -111,7 +111,7 @@ class Annonce
 	 */
 	public function getDescription()
 	{
-		return $this->description;
+		return str_replace("\n","<br/>", $this->description);
 	}
 
 	/**
