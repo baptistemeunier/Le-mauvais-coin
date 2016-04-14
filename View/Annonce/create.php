@@ -1,6 +1,6 @@
 <?php
 /** @var Form $form */
- include 'header.php'; // Appel du template contenant les balises <head>, <header> ?>
+ include __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <div class="grille">
 	<div class="collone collone-1"></div>
@@ -13,11 +13,12 @@
 		<?= $form->textarea('description'); ?><br />
 
 		<label for="categorie">Catégorie de l'annonce : </label>
-		<?= $form->select('categorie', $categories); ?>
-		<?= $form->input('categorie_autre'); ?><br />
+		<?= $form->select('categorie', $categories); ?><br />
 
-		<label for="ville">Choisiser votre ville : </label>
-		<?= $form->select('ville', $villes); ?>  <?= $form->input('ville_autre'); ?><br />
+		<label for="ville">Saisisez votre ville : </label>
+		<?= $form->input('ville_nom', array('placeholder' => "Nom de la ville Ex: Cholet")); ?>
+		<?= $form->input('ville_cp', array('placeholder' => "Code postal Ex: 49300", "type" => "number")); ?>
+		<?= $form->input('ville_region', array('placeholder' => "Region : Ex Pays de la Loire")); ?><br />
 
 		<label for="prix">Definiser votre prix (Peut être nul) : </label>
 		<?= $form->input('prix', array("type" => "number")); ?><br />
@@ -26,5 +27,5 @@
 		<?= $form->close(); ?>
 	</div>
 </div>
-<?php include 'footer.php'; // Appel du template contenant les balises <footer> ?>
+<?php include __ROOT__.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 

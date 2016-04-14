@@ -29,13 +29,37 @@ class App
 	 **/
 	private $session;
 
-	function __construct()
+	/** Variable dans l'url
+	 * @var Array $params
+	 **/
+	private $params;
+
+	/**
+	 * @param array $get
+	 */
+	function __construct($get)
 	{
 		/* Appel les classes nécessaire aux pages */
 		$this->config = include("config.php");
 		$this->template = new Template($this->config['dir_view']);
 		$this->session = new Session();
 		$this->database = new Database($this->config['db_host'], $this->config['db_name'], $this->config['db_login'], $this->config['db_pass']);
+
+		$this->params = $get;
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getParams($key = null)
+	{
+		if(!$key){
+			return $this->params;
+		}
+		if(isset($this->params[$key])){
+			return $this->params[$key];
+		}
+		return false;
 	}
 
 	/**
@@ -43,7 +67,7 @@ class App
 	 * Permet de recupérer l'instance de Template
 	 * @return Template
 	 */
-	public function getTemplate()
+	protected function getTemplate()
 	{
 		return $this->template;
 	}
@@ -51,11 +75,12 @@ class App
 	/**
 	 * Fonction getDBInstance
 	 * Permet de recupérer l'instance de Database
-	 * @return Database
+	 * @return Annonces|Categories|Regions|Users|Villes|Stat
 	 */
-	public function getDBInstance()
+	protected function getDBInstance($model)
 	{
-		return $this->database;
+
+		return new $model($this->database->getDB());
 	}
 
 	/**
@@ -63,12 +88,12 @@ class App
 	 * Permet de recupérer l'instance de Template
 	 * @return Session
 	 */
-	public function getSession()
+	protected function getSession()
 	{
 		return $this->session;
 	}
 
-	public function render($file, $data = array())
+	protected function render($file, $data = array())
 	{
 		$this->template->set('session', $this->session);
 		return $this->template->render($file, $data);
@@ -79,7 +104,7 @@ class App
 	 * @param String $mdp Le mot de passe du compte
 	 * @return Bool true si il connecté false sinon
 	 */
-	public function connectUser($email, $mdp)
+	protected function connectUser($email, $mdp)
 	{
 		$user = $this->database->findUser($email);
 		if($user === false){
@@ -95,7 +120,7 @@ class App
 		return false;
 	}
 
-	public function disconnectUser()
+	protected function disconnectUser()
 	{
 		$this->session->setMessage("Vous étes maintenant déconnecté", 'valid');
 		unset($_SESSION['_user']);
