@@ -23,6 +23,15 @@ if(!$get['page']){ // Si l'URL n'a pas de ?page=..
 	$route_action = ($page[1] !== null)?strtolower($page[1]).'Action':'indexAction';
 }
 
-$Controller = new $route_controller($get); // On charge le Controller
-echo $Controller->$route_action(); // On affiche la methode (Qui dois retrouner le contenu HTML à affiché)
-?>
+if(class_exists($route_controller)){
+	$Controller = new $route_controller($get); // On charge le Controller
+	if(method_exists($Controller, $route_action)){
+		echo $Controller->$route_action(); // On affiche la methode (Qui dois retrouner le contenu HTML à affiché)
+	}else{
+		header("HTTP/1.0 404 Not Found");
+		echo "404 Not Found !";
+	}
+}else{
+	header("HTTP/1.0 404 Not Found");
+	echo "404 Not Found !";
+}
