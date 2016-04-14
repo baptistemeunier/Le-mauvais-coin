@@ -28,13 +28,12 @@
 								<li><a href="index.php?page=search/avance">Recherche avancée</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Statistiques</a></li>
+						<li><a href="index.php?page=stat">Statistiques</a></li>
 						<?php if($session->is_connect()): ?>
 							<li style="float:right"><a href="index.php?page=user/connect">Déconnexion</a></li>
 							<?php if($session->is_Admin()): ?>
 								<li style="float:right"><a href="#">Panel Admin</a>
 									<ul>
-										<li><a href="#">Gestion annonce</a></li>
 										<li><a href="index.php?page=user/admin">Gestion membre</a></li>
 									</ul>
 								</li>

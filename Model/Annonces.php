@@ -50,7 +50,11 @@ class Annonces
 	public function findBy($conditions){
 		$temp = array();
 		foreach($conditions as $field => $value){
-			$temp[] = ' '.$field."= ".$value.' ';
+			if($value == null){
+				$temp[] = ' '.$field." IS NULL ";
+			}else{
+				$temp[] = ' '.$field."= ".$value.' ';
+			}
 		}
 		$where = "WHERE ".implode("AND", $temp);
 		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville

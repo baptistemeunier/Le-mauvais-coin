@@ -10,14 +10,14 @@ if($k%2 == 0): ?>
 	<div class="collone collone-4">
 		<article>
 			<header>
-				<a href="?page=annonce/view&id=<?= $annonce->getId() ?>"><?= $annonce->getTitreFormat() ?></a>
+				<h2><a href="?page=annonce/view&id=<?= $annonce->getId() ?>"><?= $annonce->getTitreFormat() ?></a></h2>
 			</header>
 			<div style="
 			margin-top: 20px;
 			margin-left: 10%;
 			width: 80%;
 			height: 100px;
-			background-color: #0783f9">
+			background-color: #B2B2B2">
 			</div>
 			<p class="info">
 				<?= $annonce->getVille() ?>

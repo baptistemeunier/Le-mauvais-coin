@@ -75,7 +75,7 @@ class App
 	/**
 	 * Fonction getDBInstance
 	 * Permet de recupérer l'instance de Database
-	 * @return Annonces|Categories|Regions|Users|Villes
+	 * @return Annonces|Categories|Regions|Users|Villes|Stat
 	 */
 	protected function getDBInstance($model)
 	{
