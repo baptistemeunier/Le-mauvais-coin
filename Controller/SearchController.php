@@ -5,14 +5,16 @@ class SearchController extends App
 {
 	public function categoriesAction(){
 		$categorie = (isset($_GET['cat']) && is_numeric($_GET['cat']))?$_GET['cat']:null;
-
-		if($categorie){ // Si une categorie est choisie
+		dump($categorie);
+		if($categorie !== null){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
-			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.categorie_id' => $categorie));
+			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.categorie_id' => ($categorie == 0)?null:$categorie));
 			return $this->render("Annonce/index", array('titre' => "Recherche par categorie", 'annonces' => $annonces));
 		}else{
 			/* Sinon on récupére toute les categories */
 			$categories = $this->getDBInstance("Categories")->findAll();
+			$categorie = new Caterorie();
+			$categories[] = $categorie->setId(0)->setCategorie("Divers");
 			return $this->render("Search/categories", array('titre' => "Liste des categories disponible", 'categories' => $categories));
 		}
 	}
@@ -36,16 +38,22 @@ class SearchController extends App
 
 		/* Selection de toute les categories, villes, regions */
 		$categories = $this->getDBInstance("Categories")->findAll();
+		$categorie = new Caterorie();
+		$categories[] = $categorie->setId(0)->setCategorie("Divers");
+		$categorie = new Caterorie();
+		$categories[] = $categorie->setId('none')->setCategorie("Toute les catégories");
 		$villes     = $this->getDBInstance("Villes")->findAll();
+		$ville      = new Ville();
+		$villes[]   = $ville->setId('none')->setVille("Toute les villes");
 		$regions    = $this->getDBInstance("Regions")->findAll();
 		$annonces   = array(); // Va contenir les annonces trouvée
 
 		if(!empty($_POST)){ // Si des donnée son postée
 			$champs = array();
 			if($_POST['categorie'] != 'none'){ // Si recherche par catégorie
-				$champs['a.categorie_id'] = $_POST['categorie']; // On ajoute une condition sur a.categorie_id
+				$champs['a.categorie_id'] = ($_POST['categorie'] != 0)?$_POST['categorie']:null; // On ajoute une condition sur a.categorie_id
 			}
-			if($_POST['localisation'] != 'none'){ // Si recherche par ville/regions
+			if($_POST['localisation'] != 'ville-none'){ // Si recherche par ville/regions
 				$temp = explode('-', $_POST['localisation']);
 				if($temp[0] == 'region'){ // Si regions
 					$champs['v.region_id'] = $temp[1];  // On ajoute une condition sur v.region_id

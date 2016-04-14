@@ -20,7 +20,7 @@ if(!$get['page']){ // Si l'URL n'a pas de ?page=..
 	/* Sinon on recurére les données de l'URL (Le controlleur et l'action demandée) */
 	$page = explode('/', $get['page']);
 	$route_controller = ucfirst(strtolower($page[0])).'Controller';
-	$route_action = strtolower($page[1]).'Action';
+	$route_action = ($page[1] !== null)?strtolower($page[1]).'Action':'indexAction';
 }
 
 $Controller = new $route_controller($get); // On charge le Controller

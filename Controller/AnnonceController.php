@@ -82,4 +82,12 @@ class AnnonceController extends App
 
 		return $this->render("Annonce/create", array('form' => new Form($_POST), 'categories' => $categories));
 	}
+
+	public function deleteAction(){
+		$this->getDBInstance("Annonces")->delete($this->getParams('id'));
+		$this->getSession()->setMessage("Annonce supprimmée avec succés !", "valid");
+
+		header('Location: index.php'); // On le redirige vers l'annoncne
+		exit();
+	}
 }

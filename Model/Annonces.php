@@ -6,7 +6,7 @@ class Annonces
 
 	/**
 	 * Annonces constructor.
-	 * @param $db
+	 * @param PDO $db
 	 */
 	public function __construct($db)
 	{
@@ -50,7 +50,11 @@ class Annonces
 	public function findBy($conditions){
 		$temp = array();
 		foreach($conditions as $field => $value){
-			$temp[] = ' '.$field."= ".$value.' ';
+			if($value == null){
+				$temp[] = ' '.$field." IS NULL ";
+			}else{
+				$temp[] = ' '.$field."= ".$value.' ';
+			}
 		}
 		$where = "WHERE ".implode("AND", $temp);
 		$query = $this->db->prepare('SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie , v.nom as ville
@@ -79,7 +83,14 @@ class Annonces
 		$query->bindParam('categorie_id', $cat, PDO::PARAM_STR);
 		$query->bindParam('ville_id', $data['idVille'], PDO::PARAM_STR);
 		$query->execute();
+		$query->closeCursor();
 		return $this->db->lastInsertId();
 	}
 
+	public function delete($id){
+		$query = $this->db->prepare('DELETE FROM annonces WHERE id=:id');
+		$query->bindParam('id', $id, PDO::PARAM_INT);
+		$query->execute();
+
+	}
 }

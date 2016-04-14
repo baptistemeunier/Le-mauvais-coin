@@ -45,6 +45,7 @@ class Database
 		$query->bindParam('categorie_id', $data['categorie'], PDO::PARAM_STR);
 		$query->bindParam('ville_id', $data['ville'], PDO::PARAM_STR);
 		$query->execute();
+		$query->closeCursor();
 		return $this->db->lastInsertId();
 	}
 
@@ -70,12 +71,14 @@ class Database
 		$query->execute();
 		$region = $query->fetch();
 		$query->closeCursor();
+		$query->closeCursor();
 		if($region){
 			return $region['id'];
 		}
 		$query = $this->db->prepare('INSERT INTO regions(nom) VALUES (:nom)');
 		$query->bindParam('nom', $region, PDO::PARAM_STR);
 		$query->execute();
+		$query->closeCursor();
 		$query->closeCursor();
 		return $this->db->lastInsertId();
 

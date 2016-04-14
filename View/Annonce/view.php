@@ -35,15 +35,13 @@
 			<p class="name">Téléphone</p>
 			<p class="value"><?= $annonce->getTel() ?></p>
 		</div>
-		<?php if($session->is_admin()): ?>
+		<?php if($session->is_admin() || $session->getUser()->getEmail() == $annonce->getEmail()): ?>
 			<div class="info-line">
 				<p class="inline">Fonction de gestion</p>
 			</div>
 			<div class="info-line">
-				<p class="inline-btn"><a href="#" class="btn" style="background-color: #0783f9;">Modifier l'annonce</a></p>
-			</div>
-			<div class="info-line">
-				<p class="inline-btn"><a href="#" class="btn">Supprimer l'annonce</a></p>
+				<p class="inline-btn"><a href="#" class="btn" style="background-color: #0783f9;">Modifier l'annonce</a><br />
+				<a href="?page=annonce/delete&id=<?= $annonce->getId() ?>" class="btn">Supprimer l'annonce</a></p>
 			</div>
 
 		<?php endif; ?>

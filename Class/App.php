@@ -51,9 +51,15 @@ class App
 	/**
 	 * @return Array
 	 */
-	public function getParams()
+	public function getParams($key = null)
 	{
-		return $this->params;
+		if(!$key){
+			return $this->params;
+		}
+		if(isset($this->params[$key])){
+			return $this->params[$key];
+		}
+		return false;
 	}
 
 	/**
@@ -69,7 +75,7 @@ class App
 	/**
 	 * Fonction getDBInstance
 	 * Permet de recupérer l'instance de Database
-	 * @return Annonces|Categories|Regions|Users|Villes
+	 * @return Annonces|Categories|Regions|Users|Villes|Stat
 	 */
 	protected function getDBInstance($model)
 	{
