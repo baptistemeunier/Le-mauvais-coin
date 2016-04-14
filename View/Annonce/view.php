@@ -40,8 +40,7 @@
 				<p class="inline">Fonction de gestion</p>
 			</div>
 			<div class="info-line">
-				<p class="inline-btn"><a href="#" class="btn" style="background-color: #0783f9;">Modifier l'annonce</a><br />
-				<a href="?page=annonce/delete&id=<?= $annonce->getId() ?>" class="btn">Supprimer l'annonce</a></p>
+				<p class="inline-btn"><a href="?page=annonce/delete&id=<?= $annonce->getId() ?>" class="btn">Supprimer l'annonce</a></p>
 			</div>
 
 		<?php endif; ?>
