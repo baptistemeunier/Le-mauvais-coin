@@ -25,7 +25,7 @@ if($k%2 == 0): ?>
 			</p>
 			<footer>
 				<p>
-					<a href="?page=search/categories&cat=<?= ($annonce->getCategorieId())?$annonce->getCategorieId():"0" ?>"> <?= $annonce->getCategorieFormat() ?> </a>
+					<a href="<?= $this->getUrl('view_categorie', ['id' => (($annonce->getCategorieId())?$annonce->getCategorieId():"0")]) ?>"> <?= $annonce->getCategorieFormat() ?> </a>
 					<span style="float: right;"><?= $annonce->getDateFormat() ?></span>
 				</p>
 			</footer>

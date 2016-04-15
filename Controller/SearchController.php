@@ -4,7 +4,7 @@
 class SearchController extends Controller
 {
 	public function categoriesAction(){
-		$categorie = $this->request->getParams()[0];
+		$categorie = $this->request->getParam('id');
 		if($categorie !== null){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
 			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.categorie_id' => ($categorie == 0)?null:$categorie));
@@ -19,7 +19,7 @@ class SearchController extends Controller
 	}
 
 	public function villesAction(){
-		$ville = $this->request->getParams()[0];
+		$ville = $this->request->getParam('id');
 
 		if($ville){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */

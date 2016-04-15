@@ -16,15 +16,31 @@ class Config
 				'id' => '[0-9]+'
 			)
 		),
-		'list_villes' => array(
-			'path' => '/recherche-par-ville',
+		'view_categorie' => array(
+			'path' => '/recherche-par-categorie-{id}',
 			'Controller' => 'SearchController',
-			'Action' => 'villesAction',
+			'Action' => 'categoriesAction',
+			'Params' => array(
+				'id' => '[0-9]+'
+			)
 		),
 		'liste_categories' => array(
 			'path' => '/recherche-par-categorie',
 			'Controller' => 'SearchController',
 			'Action' => 'categoriesAction',
+		),
+		'view_ville' => array(
+			'path' => '/recherche-par-ville-{id}',
+			'Controller' => 'SearchController',
+			'Action' => 'villesAction',
+			'Params' => array(
+				'id' => '[0-9]+'
+			)
+		),
+		'list_villes' => array(
+			'path' => '/recherche-par-ville',
+			'Controller' => 'SearchController',
+			'Action' => 'villesAction',
 		),
 		'recherche_avance' => array(
 			'path' => '/recherche-avancee',
@@ -55,6 +71,14 @@ class Config
 			'path' => '/admin/list-users',
 			'Controller' => 'UserController',
 			'Action' => 'adminAction',
+		),
+		'delete_annonce' => array(
+			'path' => '/admin/delete-annonce-{id}',
+			'Controller' => 'AnnonceController',
+			'Action' => 'deleteAction',
+			'Params' => array(
+				'id' => '[0-9]+'
+			)
 		),
 	);
 }

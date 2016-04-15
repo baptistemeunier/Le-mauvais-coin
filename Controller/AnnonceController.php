@@ -83,7 +83,7 @@ class AnnonceController extends Controller
 	}
 
 	public function deleteAction(){
-		$this->getDBInstance("Annonces")->delete($this->request->getParams()[0]);
+		$this->getDBInstance("Annonces")->delete($this->request->getParam('id'));
 		$this->getSession()->setMessage("Annonce supprimmée avec succés !", "valid");
 
 		header('Location: '.ROOT_RELATIVE); // On le redirige vers l'annoncne
