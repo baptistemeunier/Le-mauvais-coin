@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: baptiste
- * Date: 15/04/16
- * Time: 14:33
- */
 class Config
 {
 	public static $route = array(
@@ -13,6 +7,14 @@ class Config
 			'path' => '/',
 			'Controller' => 'AnnonceController',
 			'Action' => 'indexAction'
+		),
+		'view_annonce' => array(
+			'path' => '/annonce-{id}',
+			'Controller' => 'AnnonceController',
+			'Action' => 'viewAction',
+			'Params' => array(
+				'id' => '[0-9]+'
+			)
 		),
 		'inscription' => array(
 			'path' => '/inscription',

@@ -16,7 +16,7 @@ class AnnonceController extends Controller
 	}
 
 	public function viewAction(){
-		$id = $this->request->getParams()[0];
+		$id = $this->request->getParam('id');
 		/* Récuperation de l'annonce */
 		$annonce = $this->getDBInstance("Annonces")->find($id);
 
