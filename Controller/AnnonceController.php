@@ -68,7 +68,7 @@ class AnnonceController extends Controller
 				$id = $this->getDBInstance("Annonces")->add($post, $this->getSession()->getUser()->getId()); // On ajoute l'annonce
 				$this->getSession()->setMessage("Annonce en ligne !", "valid");
 
-				header('Location: index.php?page=annonce/view&id='.$id); // On le redirige vers l'annoncne
+				header('Location: '.ROOT_RELATIVE.'/annonce/view/'.$id); // On le redirige vers l'annoncne
 				exit();
 			}
 		}
@@ -83,10 +83,10 @@ class AnnonceController extends Controller
 	}
 
 	public function deleteAction(){
-		$this->getDBInstance("Annonces")->delete($this->getParams('id'));
+		$this->getDBInstance("Annonces")->delete($this->request->getParams()[0]);
 		$this->getSession()->setMessage("Annonce supprimmée avec succés !", "valid");
 
-		header('Location: index.php'); // On le redirige vers l'annoncne
+		header('Location: '.ROOT_RELATIVE); // On le redirige vers l'annoncne
 		exit();
 	}
 }

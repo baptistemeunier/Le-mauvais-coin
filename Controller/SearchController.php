@@ -1,11 +1,10 @@
 <?php
 
 
-class SearchController extends App
+class SearchController extends Controller
 {
 	public function categoriesAction(){
-		$categorie = (isset($_GET['cat']) && is_numeric($_GET['cat']))?$_GET['cat']:null;
-		dump($categorie);
+		$categorie = $this->request->getParams()[0];
 		if($categorie !== null){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
 			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.categorie_id' => ($categorie == 0)?null:$categorie));
@@ -20,7 +19,7 @@ class SearchController extends App
 	}
 
 	public function villesAction(){
-		$ville = (isset($_GET['ville']) && is_numeric($_GET['ville']))?$_GET['ville']:null;
+		$ville = $this->request->getParams()[0];
 
 		if($ville){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */

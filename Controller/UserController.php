@@ -6,12 +6,12 @@
  * Date: 14/03/16
  * Time: 20:35
  **/
-class UserController extends App
+class UserController extends Controller
 {
 	public function inscriptionAction(){
 
 		if($this->getSession()->is_connect()){
-			header('Location: index.php'); // Si connecté on le redirige
+			header('Location: '.ROOT_RELATIVE); // Si connecté on le redirige
 			exit();
 		}
 
@@ -25,7 +25,7 @@ class UserController extends App
 			}else{
 				$this->getSession()->setMessage("Vous êtes maintenant inscrit !", "valid");
 				$this->getDBInstance("Users")->add($_POST);
-				header('Location: index.php'); // On le redirige
+				header('Location: '.ROOT_RELATIVE); // On le redirige
 				exit();
 			}
 		}
@@ -48,7 +48,7 @@ class UserController extends App
 			/* On tente de connecté l'utilisateur */
 			if($this->connectUser($_POST['email'], $_POST['mdp'])){
 				$route = (isset($_GET["before"])?'?page='.$_GET["before"]:''); // Si il vient d'unne autre page un va le renvoyée dessus
-				header('Location: index.php'.$route); // Si connecté on le redirige
+				header('Location: '.ROOT_RELATIVE); // Si connecté on le redirige
 				exit();
 			}
 		}
@@ -60,7 +60,7 @@ class UserController extends App
 	public function adminAction(){
 		if(!$this->getSession()->is_Admin()){
 			$this->getSession()->setMessage("Veuillez vous connecté pour accedée à cette page", 'attention'); // on affiche l'erreur
-			header('Location: index.php?page=user/connect'); // On le redirige vers la connection
+			header('Location: '.ROOT_RELATIVE.'/user/connect'); // On le redirige vers la connection
 			exit();
 		}
 

@@ -1,4 +1,4 @@
-<?php include  __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php include  ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <ul>
 	<?php foreach($users as $k => $user): ?>
@@ -6,5 +6,5 @@
 	<?php endforeach; ?>
 </ul>
 
-<?php include  __ROOT__.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
+<?php include  ROOT.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 

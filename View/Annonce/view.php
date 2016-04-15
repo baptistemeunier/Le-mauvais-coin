@@ -40,7 +40,7 @@
 				<p class="inline">Fonction de gestion</p>
 			</div>
 			<div class="info-line">
-				<p class="inline-btn"><a href="?page=annonce/delete&id=<?= $annonce->getId() ?>" class="btn">Supprimer l'annonce</a></p>
+				<p class="inline-btn"><a href="<?= ROOT_RELATIVE ?>/annonce/delete/<?= $annonce->getId() ?>" class="btn">Supprimer l'annonce</a></p>
 			</div>
 
 		<?php endif; ?>
