@@ -10,7 +10,7 @@ if($k%2 == 0): ?>
 	<div class="collone collone-4">
 		<article>
 			<header>
-				<h2><a href="<?= ROOT_RELATIVE ?>/annonce/view/<?= $annonce->getId() ?>"><?= $annonce->getTitreFormat() ?></a></h2>
+				<h2><a href="<?= $this->getUrl('view_annonce', ['id' => $annonce->getId()]) ?>"><?= $annonce->getTitreFormat() ?></a></h2>
 			</header>
 			<div style="
 			margin-top: 20px;

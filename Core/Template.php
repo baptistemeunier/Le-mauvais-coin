@@ -48,5 +48,20 @@ class Template
 		include($this->dir.$file.'.php');
 		return ob_get_clean();
 	}
+
+	public function getUrl($routeName, $params){
+		$routes = Config::$route;
+		if(isset($routes[$routeName])){
+			$route = $routes[$routeName];
+			$path = ROOT_RELATIVE.$route['path'];
+			foreach($route['Params'] as $k => $p){
+				$i = $params[$k];
+				if(preg_match('#'.$p.'#', $i)){
+					$path = preg_replace('#{'.$k.'}#', $i, $path);
+				}
+			}
+			return $path;
+		}
+	}
 }
 ?>
