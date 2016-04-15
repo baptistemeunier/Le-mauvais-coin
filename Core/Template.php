@@ -16,6 +16,7 @@ class Template
 	 **/
 	private $data = array(); // Données a envoyée à la page (Tableau de valeur)
 
+	private $routes = array();
 	/**
 	 * @param String $dir répertoire des vues
 	 **/
@@ -50,9 +51,11 @@ class Template
 	}
 
 	public function getUrl($routeName, $params){
-		$routes = Config::$route;
-		if(isset($routes[$routeName])){
-			$route = $routes[$routeName];
+		if(empty($this->routes)){
+			$this->routes = Config::$route;
+		}
+		if(isset($this->routes[$routeName])){
+			$route = $this->routes[$routeName];
 			$path = ROOT_RELATIVE.$route['path'];
 			foreach($route['Params'] as $k => $p){
 				$i = $params[$k];
