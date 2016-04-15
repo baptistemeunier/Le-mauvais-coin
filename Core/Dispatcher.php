@@ -23,20 +23,31 @@ class Dispatcher
 
 	private function loadController()
 	{
+		$routes = Config::$route;
+		foreach($routes as $r){
+			if(preg_match('%^'.$r['path'].'$%', $this->request->getUrl(), $matches)){
+				dump($r);
+				dump($matches);
+				$Controller = $r['Controller'];
+				$Action = $r['Action'];
+				if(class_exists($Controller)){
+					$Controller = new $Controller($this->request);
+					if(method_exists($Controller, $Action)){
+						echo $Controller->$Action();
+					}else{
+						echo'BOOM Action';
+					}
+				}else{
+					echo'BOOM Ctrl';
+				}
+			}
+		}
+	/*
 		$Controller = $this->request->getController();
 		$Action = $this->request->getAction();
 		dump($Controller);
 		dump($Action);
-		if(class_exists($Controller)){
-			dump($Controller);
-			$Controller = new $Controller($this->request);
-			if(method_exists($Controller, $Action)){
-				echo $Controller->$Action();
-			}else{
-				echo'BOOM';
-			}
-		}else{
-			echo'BOOM';
-		}
+	*/
 	}
+
 }
