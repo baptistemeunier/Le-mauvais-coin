@@ -10,14 +10,16 @@ function __autoload($classe)
 	 * On cherche dans les dossiers la classe
 	 * Et si on la trouve on l'inclue
 	 */
-	if (file_exists("Class/" . $classe . ".php")){
-		include "Class/" . $classe . ".php";
-	}else if(file_exists("Model/" . $classe . ".php")){
-		include "Model/" . $classe . ".php";
-	}else if(file_exists("Class/Table/" . $classe . ".php")){
-		include "Class/Table/" . $classe . ".php";
-	}else if(file_exists("Controller/" . $classe . ".php")){
-		include "Controller/" . $classe . ".php";
+	if (file_exists(ROOT."/Core/" . $classe . ".php")){ // Classe du Noyau de l'application
+		include ROOT."/Core/" . $classe . ".php";
+	}else if (file_exists(ROOT."/Controller/" . $classe . ".php")){ // Classe Controller
+		include ROOT."/Controller/" . $classe . ".php";
+	}else if (file_exists(ROOT."/Model/" . $classe . ".php")){ // Classe Model
+		include ROOT."/Model/" . $classe . ".php";
+	}else if (file_exists(ROOT."/Table/" . $classe . ".php")){ // Classe Table
+		include ROOT."/Table/" . $classe . ".php";
+	}else{
+	//	die('La classe '.$classe.' n\'a pue etre trouvé');
 	}
 }
 function dump($input, $collapse=false) {

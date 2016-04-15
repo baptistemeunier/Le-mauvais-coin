@@ -12,5 +12,5 @@ return array(
 	'db_pass' => '',
 
 	/* Repertoire des Vues */
-	'dir_view' => 'View/',
+	'dir_view' => '/View/',
 );

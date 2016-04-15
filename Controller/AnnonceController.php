@@ -6,7 +6,7 @@
  * Date: 14/03/16
  * Time: 20:35
  **/
-class AnnonceController extends App
+class AnnonceController extends Controller
 {
 	public function indexAction(){
 		/* Récuperation des annonces */
@@ -16,8 +16,7 @@ class AnnonceController extends App
 	}
 
 	public function viewAction(){
-		$id = (isset($_GET['id']) && is_numeric($_GET['id']))?$_GET['id']:1;
-
+		$id = $this->request->getParams()[0];
 		/* Récuperation de l'annonce */
 		$annonce = $this->getDBInstance("Annonces")->find($id);
 

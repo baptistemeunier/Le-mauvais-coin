@@ -1,4 +1,4 @@
-<?php include __ROOT__.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 <div class="grille">
 	<div class="collone collone-6">
 		<h4>Description de l'annonce : </h4>
@@ -35,7 +35,7 @@
 			<p class="name">Téléphone</p>
 			<p class="value"><?= $annonce->getTel() ?></p>
 		</div>
-		<?php if($session->is_admin() || $session->getUser()->getEmail() == $annonce->getEmail()): ?>
+		<?php if($session->is_connect() && ($session->is_admin() || $session->getUser()->getEmail() == $annonce->getEmail())): ?>
 			<div class="info-line">
 				<p class="inline">Fonction de gestion</p>
 			</div>
@@ -46,5 +46,5 @@
 		<?php endif; ?>
 	</div>
 </div>
-<?php include __ROOT__.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
+<?php include ROOT.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 

@@ -1,4 +1,22 @@
 <?php
+session_start(); // Demarrage de la session
+
+/* Definition de quelque constante */
+define('PUBLIC', dirname(__FILE__)); // Repertoire public (Soit le repertoire avec le CSS, les image, Etc ...)
+define('ROOT_RELATIVE', dirname(dirname($_SERVER['SCRIPT_NAME']))); // Racine relative (pour les lien par exemple)
+define('ROOT', dirname(dirname(__FILE__))); // Repertoire racine (pour avoir accées au dossier depuis la racine)
+/* Chargement de autoloader (Qui cherche puis charge les classe) */
+require_once ROOT ."/Core/autoloader.php";
+
+$Dispatcher = new Dispatcher();
+?>
+
+
+
+
+
+
+<!--
 /**
  * index.php
  * Fichier qui dirige l'utilisateur vers une page
@@ -10,6 +28,7 @@ define('__ROOT__', dirname(__FILE__));
 require_once "Class/autoloader.php";
 
 /* Récupére les données de URL */
+dump(parse_url());
 $get = $_GET;
 
 if(!$get['page']){ // Si l'URL n'a pas de ?page=..

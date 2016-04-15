@@ -6,7 +6,7 @@
  * Date: 14/03/16
  * Time: 20:35
  **/
-class StatController extends App
+class StatController extends Controller
 {
 	public function indexAction(){
 		$stat = $this->getDBInstance("Stat");

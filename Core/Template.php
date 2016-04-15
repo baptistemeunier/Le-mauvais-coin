@@ -22,7 +22,7 @@ class Template
 	function __construct($dir)
 	{
 		/* On met le répertoire des vues en memoire */
-		$this->dir = $dir;
+		$this->dir = ROOT.$dir;
 	}
 
 	/** Fonction set

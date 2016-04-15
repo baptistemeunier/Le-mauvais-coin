@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Classe App
+ * Classe Controller
  *
  * Classe chargée dans toute les pages.
  * Elle contient des instances de toutes les classes nécessaires aux pages.
  **/
-class App
+class Controller
 {
 	/** Instance de la classe Template
 	 * @var Template $template
@@ -29,23 +29,16 @@ class App
 	 **/
 	private $session;
 
-	/** Variable dans l'url
-	 * @var Array $params
-	 **/
-	private $params;
+	public $request;
 
-	/**
-	 * @param array $get
-	 */
-	function __construct($get)
+	function __construct($request)
 	{
 		/* Appel les classes nécessaire aux pages */
 		$this->config = include("config.php");
 		$this->template = new Template($this->config['dir_view']);
 		$this->session = new Session();
 		$this->database = new Database($this->config['db_host'], $this->config['db_name'], $this->config['db_login'], $this->config['db_pass']);
-
-		$this->params = $get;
+		$this->request = $request;
 	}
 
 	/**
@@ -53,13 +46,7 @@ class App
 	 */
 	public function getParams($key = null)
 	{
-		if(!$key){
-			return $this->params;
-		}
-		if(isset($this->params[$key])){
-			return $this->params[$key];
-		}
-		return false;
+		die("Fontion getParams Changée !! die()");
 	}
 
 	/**
