@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Classe Config
+ *
+ * Classe Statique contenant toute la configuration de l'application.
+ * Elle contient par exemple les routes et les variables de connexion à la BDD.
+ **/
 class Config
 {
 	/** Liste des routes
