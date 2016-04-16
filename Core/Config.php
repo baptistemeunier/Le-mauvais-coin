@@ -2,6 +2,10 @@
 
 class Config
 {
+	/** Liste des routes
+	 * @var array $route Ensemble des routes de l'application
+	 * Les routes seront lues et parse par le Dispatcher
+	 */
 	public static $route = array(
 		'index' => array(
 			'path' => '/',
@@ -81,4 +85,25 @@ class Config
 			)
 		),
 	);
+
+	/** Variable Debug
+	 * @var bool $debug Affchage ou non des erreurs de developement
+	 * Ex : Si Erreur 500 et $debug = false alors on n'aura pas la raison de l'erreur.
+	 */
+	public static $debug = true;
+
+	/** Information de connection à la base de données
+	 * @var array Parametre de connexion
+	 */
+	public static $db = array(
+		'db_host' => 'localhost',
+		'db_name' => 'projet',
+		'db_login' => 'root',
+		'db_pass' => '',
+	);
+
+	/** Répertoire contenant les Vues
+	 * @var string
+	 */
+	public static $viewDir = '/View/';
 }

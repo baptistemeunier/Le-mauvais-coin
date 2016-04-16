@@ -34,10 +34,10 @@ class Controller
 	function __construct($request)
 	{
 		/* Appel les classes nécessaire aux pages */
-		$this->config = include("config.php");
-		$this->template = new Template($this->config['dir_view']);
+		$db = Config::$db;
+		$this->template = new Template(Config::$viewDir);
 		$this->session = new Session();
-		$this->database = new Database($this->config['db_host'], $this->config['db_name'], $this->config['db_login'], $this->config['db_pass']);
+		$this->database = new Database($db['db_host'], $db['db_name'], $db['db_login'], $db['db_pass']);
 		$this->request = $request;
 	}
 
@@ -114,19 +114,16 @@ class Controller
 	}
 
 	public function createNotFound($message, $debug = false){
-		$config = false;
-
 		header('HTTP/1.1 404 Not Found');
 
-		$message = ($debug && !$config)?'Inconnue':$message;
+		$message = ($debug && !Config::$debug)?'Inconnue':$message;
 		return $this->render("Error/404", array('message' => $message));
 	}
 
 	public function createInternalError($message, $debug = false){
-		$config = false;
 
 		header('HTTP/1.1 500 Internal Server Error');
-		$message = ($debug && !$config)?'Le serveur ne peut afficher la page demandée':$message;
+		$message = ($debug && !Config::$debug)?'Le serveur ne peut afficher la page demandée':$message;
 		return $this->render("Error/404", array('message' => $message));
 	}
 
