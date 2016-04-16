@@ -2,7 +2,7 @@
 
 <ul id="search">
 	<?php foreach($villes as $k => $ville): ?>
-	<li><a href="<?= ROOT_RELATIVE ?>/search/villes/<?= $ville->getId() ?>"><?= $ville->getVille() ?></a></li>
+	<li><a href="<?= $this->getUrl('view_ville', ['id' => $ville->getId()]) ?>"><?= $ville->getVille() ?></a></li>
 	<?php endforeach; ?>
 </ul>
 

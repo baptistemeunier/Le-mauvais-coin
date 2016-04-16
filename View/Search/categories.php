@@ -2,7 +2,7 @@
 
 <ul id="search">
 	<?php foreach($categories as $k => $categorie): ?>
-	<li><a href="<?= ROOT_RELATIVE ?>/search/categories/<?= $categorie->getId() ?>"><?= $categorie->getCategorie() ?></a></li>
+	<li><a href="<?= $this->getUrl('view_categorie', ['id' => $categorie->getId()]) ?>"><?= $categorie->getCategorie() ?></a></li>
 	<?php endforeach; ?>
 </ul>
 
