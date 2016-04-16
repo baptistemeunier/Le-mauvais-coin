@@ -113,5 +113,22 @@ class Controller
 		unset($_SESSION['_user']);
 	}
 
+	public function createNotFound($message, $debug = false){
+		$config = false;
+
+		header('HTTP/1.1 404 Not Found');
+
+		$message = ($debug && !$config)?'Inconnue':$message;
+		return $this->render("Error/404", array('message' => $message));
+	}
+
+	public function createInternalError($message, $debug = false){
+		$config = false;
+
+		header('HTTP/1.1 500 Internal Server Error');
+		$message = ($debug && !$config)?'Le serveur ne peut afficher la page demandée':$message;
+		return $this->render("Error/404", array('message' => $message));
+	}
+
 }
 ?>

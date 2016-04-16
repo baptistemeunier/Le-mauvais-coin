@@ -44,23 +44,23 @@ class Dispatcher
 			}
 		}
 		if (!$find) {
-			die("DIE : Aucun route trouvé pour l'URI " . $url);
+			$this->error("DIE : Aucun route trouvé pour l'URI " . $url, 404);
 		} else {
 			$this->loadController($Controller, $Action, $Params);
 		}
 	}
 
-	private function loadController($Controller, $Action, $Params)
+	private function loadController($ControllerName, $Action, $Params)
 	{
-		 if(class_exists($Controller)){
-			$Controller = new $Controller($this->request);
+		 if(class_exists($ControllerName)){
+			$Controller = new $ControllerName($this->request);
 			if(method_exists($Controller, $Action)){
 				echo $Controller->$Action();
 			}else{
-				echo'BOOM Action';
+				$this->error("L'action " . $Action . " pour le controller ". $ControllerName . " n'a pas été trouvée", 500);
 			}
 		}else{
-			echo'BOOM Ctrl';
+			 $this->error("Le controller ". $ControllerName . " n'a pas été trouvée", 500);
 		}
 	}
 
@@ -74,4 +74,14 @@ class Dispatcher
 		}
 		return preg_replace($matches[0], $matches[1], "#^" . $route['path'] . "$#");
 	}
+
+	private function error($message, $code){
+		$Controller = new Controller($this->request);
+		if($code == 404){
+			echo $Controller->createNotFound($message, true);
+		}else{
+			echo $Controller->createInternalError($message, true);
+		}
+	}
+
 }

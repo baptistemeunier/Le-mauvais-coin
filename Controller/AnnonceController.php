@@ -20,6 +20,9 @@ class AnnonceController extends Controller
 		/* Récuperation de l'annonce */
 		$annonce = $this->getDBInstance("Annonces")->find($id);
 
+		if(!$annonce){
+			return $this->createNotFound('Annonce non trouvé');
+		}
 		/* Envoie du titre à la vue */
 		$this->getTemplate()->set("titre", $annonce->getTitre());
 		$this->getTemplate()->set("title", $annonce->getTitre().' - Le mauvais coin');
