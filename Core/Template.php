@@ -50,17 +50,19 @@ class Template
 		return ob_get_clean();
 	}
 
-	public function getUrl($routeName, $params){
+	public function getUrl($routeName, $params = array()){
 		if(empty($this->routes)){
 			$this->routes = Config::$route;
 		}
 		if(isset($this->routes[$routeName])){
 			$route = $this->routes[$routeName];
 			$path = ROOT_RELATIVE.$route['path'];
-			foreach($route['Params'] as $k => $p){
-				$i = $params[$k];
-				if(preg_match('#'.$p.'#', $i)){
-					$path = preg_replace('#{'.$k.'}#', $i, $path);
+			if(isset($route['Params'])){
+				foreach($route['Params'] as $k => $p){
+					$i = $params[$k];
+					if(preg_match('#'.$p.'#', $i)){
+						$path = preg_replace('#{'.$k.'}#', $i, $path);
+					}
 				}
 			}
 			return $path;
