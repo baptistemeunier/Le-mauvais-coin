@@ -31,7 +31,6 @@ class Dispatcher
 			$path = $this->getPathRegex($r);
 			$Params = [];
 			if (preg_match($path, $url, $matches)) {
-				dump($matches);
 				foreach ($matches as $k => $v) {
 					if (!is_numeric($k)) {
 						$Params[$k] = $v;
