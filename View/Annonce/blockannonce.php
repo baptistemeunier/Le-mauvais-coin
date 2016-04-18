@@ -1,37 +1,17 @@
 <?php
-/**
- * @var Int $k L'index de l'anonce dans le tableau d'annonce
- * @var Annonce $annonce L'annonce à afficher
- **/
-if($k%2 == 0): ?>
-<div class="grille">
-	<div class="collone collone-1"></div>
-<?php endif; ?>
-	<div class="collone collone-4">
-		<article>
-			<header>
-				<h2><a href="<?= $this->getUrl('view_annonce', ['id' => $annonce->getId()]) ?>"><?= $annonce->getTitreFormat() ?></a></h2>
-			</header>
-			<div style="
-			margin-top: 20px;
-			margin-left: 10%;
-			width: 80%;
-			height: 100px;
-			background-color: #B2B2B2">
-			</div>
-			<p class="info">
-				<?= $annonce->getVille() ?>
-				<span class="prix"><?= $annonce->getPrixFormat() ?></span>
-			</p>
-			<footer>
-				<p>
-					<a href="<?= $this->getUrl('view_categorie', ['id' => (($annonce->getCategorieId())?$annonce->getCategorieId():"0")]) ?>"> <?= $annonce->getCategorieFormat() ?> </a>
-					<span style="float: right;"><?= $annonce->getDateFormat() ?></span>
-				</p>
-			</footer>
-		</article>
+/**  @var Annonce $annonce **/
+?>
+
+<article class="block-annonce">
+	<img alt="Photo <?= $annonce->getTitreFormat() ?>" src="<?= ROOT_RELATIVE ?>/img/empty.png">
+	<div class="annonce-body">
+		<h3><a href="<?= $this->getUrl('view_annonce', ['id' => $annonce->getId()]) ?>"><?= $annonce->getTitreFormat() ?></a></h3>
+		<p><?= $annonce->getDescriptionFormat() ?></p>
 	</div>
-	<div class="collone collone-1"></div>
-<?php if($k%2 == 1): ?>
-</div>
-<?php endif; ?>
+	<ul class="info">
+		<li><i class="icons icons-categorie"></i> <a href="<?= $this->getUrl('view_categorie', ['id' => (($annonce->getCategorieId())?$annonce->getCategorieId():"0")]) ?>"> <?= $annonce->getCategorieFormat() ?> </a></li>
+		<li><i class="icons icons-city"></i> <?= $annonce->getVille() ?></li>
+		<li><i class="icons icons-euro"></i> <strong> <?= $annonce->getPrixFormat() ?></strong></li>
+		<li><i class="icons icons-calendar"></i> <?= $annonce->getDateFormat() ?></li>
+	</ul>
+</article>

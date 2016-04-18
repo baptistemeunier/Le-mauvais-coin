@@ -28,9 +28,16 @@ class Request
 	 */
 	private $Params;
 
+
+	/**
+	 * @var Array $post
+	 */
+	private $post;
+
 	public function __construct()
 	{
 		$this->url = isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:"/";
+		$this->post = $_POST;
 	}
 
 	/**
@@ -81,5 +88,14 @@ class Request
 		$this->Params = $Params;
 	}
 
+	public function getPost()
+	{
+		return $this->post;
+	}
+
+	public function getPostData($key)
+	{
+		return isset($this->post[$key])?$this->post[$key]:null;
+	}
 
 }

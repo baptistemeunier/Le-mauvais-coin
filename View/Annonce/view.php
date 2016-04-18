@@ -1,10 +1,10 @@
 <?php include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
-<div class="grille">
-	<div class="collone collone-6">
+	<div class="annonce-detail">
+		<img alt="Photo <?= $annonce->getTitreFormat() ?>" src="<?= ROOT_RELATIVE ?>/img/empty.png">
 		<h4>Description de l'annonce : </h4>
 		<?= $annonce->getDescription() ?>
 	</div>
-	<div class="collone collone-4">
+	<div class="annonce-info">
 		<div class="info-line">
 			<p class="inline">Information sur l'annonce</p>
 		</div>
@@ -45,6 +45,5 @@
 
 		<?php endif; ?>
 	</div>
-</div>
 <?php include ROOT.'/View/footer.php'; // Appel du template contenant les balises <footer> ?>
 

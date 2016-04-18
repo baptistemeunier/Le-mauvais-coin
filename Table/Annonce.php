@@ -290,9 +290,14 @@ class Annonce
 	public function getTitreFormat(){
 		return substr($this->titre, 0, 30).((strlen($this->titre) > 30)?" ...":"");
 	}
+
+	public function getDescriptionFormat(){
+		return substr($this->description, 0, 190).((strlen($this->description) > 190)?" ...":"");
+	}
+
 	public function getPrixFormat(){
 		if($this->prix == NULL){
-			return "";
+			return "Non précisé";
 		}
 		if(is_numeric($this->prix)){
 			return $this->prix." €";

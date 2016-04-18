@@ -9,6 +9,8 @@
 class AnnonceController extends Controller
 {
 	public function indexAction(){
+		$this->getTemplate()->set("titre", 'Dernières annonces publiées');
+
 		/* Récuperation des annonces */
 		$annonces = $this->getDBInstance('Annonces')->findAll();
 		/* Affichage de la page */
@@ -16,16 +18,18 @@ class AnnonceController extends Controller
 	}
 
 	public function viewAction(){
+		/* Récuperation de l'ID de l'annonce */
 		$id = $this->request->getParam('id');
+
 		/* Récuperation de l'annonce */
 		$annonce = $this->getDBInstance("Annonces")->find($id);
 
+		/* Si aucune annonce n'est trouvé */
 		if(!$annonce){
-			return $this->createNotFound('Annonce non trouvé');
+			return $this->createNotFound('Annonce non trouvé'); // On revoie une page 404
 		}
 		/* Envoie du titre à la vue */
 		$this->getTemplate()->set("titre", $annonce->getTitre());
-		$this->getTemplate()->set("title", $annonce->getTitre().' - Le mauvais coin');
 
 		/* Affichage de la page */
 		return $this->render("Annonce/view", array('annonce' => $annonce));

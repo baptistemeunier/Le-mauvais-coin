@@ -13,44 +13,52 @@ class Dispatcher
 	private $request;
 
 	/**
-	 * Dispatcher constructor.
+	 * Dispatcher constructeur.
 	 */
 	public function __construct()
 	{
-		$this->request = new Request();
-		$this->findRoute();
+		$this->request = new Request(); // Crée une instance de Request avec la requete de l'utilisateur
+		$this->findRoute();  // Cherche la route démandée
 	}
 
+	/** Fonction findRoute()
+	 * Cherche la route démandée et lance la fonction loadController avec les bons paramettres
+	 */
 	private function findRoute()
 	{
-		$routes = Config::$route;
-		$find = false;
-		$url = $this->request->getUrl();
+		$routes = Config::$route; // Récuperation des routes
+		$find = false; // true si une route est trouvée
+		$url = $this->request->getUrl(); // Récuperation de L'URL démandée (ex : /annonce-34)
 
-		foreach ($routes as $r) {
-			$path = $this->getPathRegex($r);
-			$Params = [];
-			if (preg_match($path, $url, $matches)) {
-				foreach ($matches as $k => $v) {
-					if (!is_numeric($k)) {
-						$Params[$k] = $v;
+		foreach ($routes as $r) { // On parcourt toute les routes
+			$path = $this->getPathRegex($r); // Regex à comparer avec l'URL
+			$Params = []; // Liste des paramettres à transmettre
+			if (preg_match($path, $url, $matches)) { // Si la REGEX à matcher
+				foreach ($matches as $k => $v) { // On parcours tout les matchs
+					if (!is_numeric($k)) { // Si l'index n'est pas numerique
+						$Params[$k] = $v;  // On l'ajoute au paramettre
 					}
 				}
-				$Controller = $r['Controller'];
-				$Action = $r['Action'];
-				$this->request->setParams($Params);
+				$Controller = $r['Controller']; // Classe à charger
+				$Action = $r['Action'];         // Méthods à appeller
+				$this->request->setParams($Params); // Ajout des paramettres dans la requete
 				$find = true;
-				break;
+				break; // On sort du foreach
 			}
 		}
-		if (!$find) {
-			$this->error("DIE : Aucun route trouvé pour l'URI " . $url, 404);
-		} else {
-			$this->loadController($Controller, $Action, $Params);
+		if (!$find) { // Si aucune route n'a était trouvée
+			$this->error("DIE : Aucun route trouvé pour l'URI " . $url, 404); // On renvois une erreur 404
+		} else { // Sinon
+			$this->loadController($Controller, $Action); // On charge le controller
 		}
 	}
 
-	private function loadController($ControllerName, $Action, $Params)
+	/**
+	 * Charge un controller avec son action puis affiche la vue rendu
+	 * @param String $ControllerName Le controller à appeler
+	 * @param String $Action L'action à appeler
+	 */
+	private function loadController($ControllerName, $Action)
 	{
 		 if(class_exists($ControllerName)){
 			$Controller = new $ControllerName($this->request);
@@ -65,6 +73,10 @@ class Dispatcher
 	}
 
 
+	/**
+	 * @param $route
+	 * @return mixed
+	 */
 	private function getPathRegex($route)
 	{
 		$count = preg_match_all('#{([a-zA-Z]+)}#', $route['path'], $matches);
