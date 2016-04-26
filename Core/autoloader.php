@@ -18,5 +18,7 @@ function __autoload($classe)
 		include ROOT."/Model/" . $classe . ".php";
 	}else if (file_exists(ROOT."/Table/" . $classe . ".php")){ // Classe Table
 		include ROOT."/Table/" . $classe . ".php";
+	}else if (preg_match('/(.*)+Exception/', $classe) != 0){
+		include ROOT."/Core/Exception.php";
 	}
 }

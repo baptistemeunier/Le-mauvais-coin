@@ -47,7 +47,7 @@ class Dispatcher
 			}
 		}
 		if (!$find) { // Si aucune route n'a était trouvée
-			$this->error("DIE : Aucun route trouvé pour l'URI " . $url, 404); // On renvois une erreur 404
+			$this->createErrorExpection("DIE : Aucun route trouvé pour l'URI " . $url, 404, true); // On renvois une erreur 404
 		} else { // Sinon
 			$this->loadController($Controller, $Action); // On charge le controller
 		}
@@ -87,13 +87,16 @@ class Dispatcher
 		return preg_replace($matches[0], $matches[1], "#^" . $route['path'] . "$#");
 	}
 
-	private function error($message, $code){
-		$Controller = new Controller($this->request);
+	private function createErrorExpection($message, $code, $debug = false)
+	{
 		if($code == 404){
-			echo $Controller->createNotFound($message, true);
+			$e = new NotFoundException($message);
+		}else if($code == 500){
+			$e = new InternalErrorException($message);
 		}else{
-			echo $Controller->createInternalError($message, true);
+			$e = new Exception();
 		}
+		throw $e;
 	}
 
 }

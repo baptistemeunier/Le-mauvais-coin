@@ -13,7 +13,14 @@ define('ROOT', dirname(dirname(__FILE__)));                         // Repertoir
 
 /* Chargement de autoloader (Qui cherche puis charge les classe) */
 require_once ROOT ."/Core/autoloader.php";
-
-/* Lancement du Dispatcher qui va prendre en charge la requete de l'utilisateur */
-$Dispatcher = new Dispatcher();
+try{
+	/* Lancement du Dispatcher qui va prendre en charge la requete de l'utilisateur */
+	$Dispatcher = new Dispatcher();
+}catch(ExectutionException $e) {
+	$Controller = new Controller(null);
+	$Controller->createNotFound($e->getMessage(), $e->debug);
+}catch(Exception $e) {
+	echo"erreur";
+	die();
+}
 ?>
