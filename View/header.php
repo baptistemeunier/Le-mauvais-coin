@@ -19,12 +19,7 @@
 				<div class="container">
 					<nav class="nav-header">
 						<a href="<?= $this->getUrl('index') ?>">Accueil</a>
-						<a href="#">Recherche</a>
-<!--
-								<li><a href="<?= $this->getUrl('liste_categories') ?>">Par catégorie</a></li>
-								<li><a href="<?= $this->getUrl('list_villes') ?>">Par ville</a></li>
-								<li><a href="<?= $this->getUrl('recherche_avance') ?>">Recherche avancée</a></li>
--->
+						<a href="<?= $this->getUrl('recherche') ?>">Recherche</a>
 						<a href="<?= $this->getUrl('statistiques') ?>">Statistiques</a>
 						<div style="float:right">
 							<?php if($session->is_connect()): ?>

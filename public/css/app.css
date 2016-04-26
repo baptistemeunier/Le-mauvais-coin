@@ -1,5 +1,5 @@
 /* Importation de la police Lato */
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,700italic,300);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,700italic,300);
 /* line 72, icons/*.png */
 .icons-sprite, .icons-calendar, .icons-categorie, .icons-city, .icons-euro {
   background-image: url('img/icons-sf7c5cb9db0.png');
@@ -252,4 +252,11 @@ footer {
 
   background-color: #6dcff6; /* Fond du boutton */
 
+}
+
+.btn-search{
+  font-weight: 300;
+  line-height: 30px;
+  margin: 0 20px;
+  background-color: #6dcff6; /* Fond du boutton */
 }

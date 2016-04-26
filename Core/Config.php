@@ -25,6 +25,11 @@ class Config
 				'id' => '[0-9]+'
 			)
 		),
+		'recherche' => array(
+			'path' => '/recherche',
+			'Controller' => 'SearchController',
+			'Action' => 'indexAction',
+		),
 		'view_categorie' => array(
 			'path' => '/recherche-par-categorie-{id}',
 			'Controller' => 'SearchController',
@@ -46,7 +51,7 @@ class Config
 				'id' => '[0-9]+'
 			)
 		),
-		'list_villes' => array(
+		'liste_villes' => array(
 			'path' => '/recherche-par-ville',
 			'Controller' => 'SearchController',
 			'Action' => 'villesAction',

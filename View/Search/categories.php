@@ -1,4 +1,6 @@
-<?php include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php $titre = "Recherche par catégorie";
+include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header>
+include ROOT.'/View/Search/searchbar.php'; ?>
 
 <ul id="search">
 	<?php foreach($categories as $k => $categorie): ?>

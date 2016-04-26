@@ -1,4 +1,6 @@
-<?php include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php $titre = "Rechercher une annonce";
+include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header>
+include ROOT.'/View/Search/searchbar.php'; ?>
 <div class="grille">
 	<div class="collone collone-1">
 	</div>
