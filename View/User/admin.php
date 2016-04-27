@@ -1,4 +1,6 @@
-<?php include  ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
+<?php
+$titre = "Panel admin : Liste des membres";
+include  ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <ul>
 	<?php foreach($users as $k => $user): ?>

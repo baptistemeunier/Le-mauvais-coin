@@ -1,6 +1,7 @@
 <?php
 /** @var Form $form */
- include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
+$titre = "Poster une annonce";
+include ROOT.'/View/header.php'; // Appel du template contenant les balises <head>, <header> ?>
 
 <div class="grille">
 	<div class="collone collone-1"></div>
