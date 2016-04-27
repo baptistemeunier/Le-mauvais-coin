@@ -3,8 +3,13 @@
 
 class SearchController extends Controller
 {
+/*
+	public function indexAction(){
+		return $this->render("Search/index", []);
+	}
+*/
 	public function categoriesAction(){
-		$categorie = $this->request->getParams()[0];
+		$categorie = $this->request->getParam('id');
 		if($categorie !== null){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
 			$annonces = $this->getDBInstance("Annonces")->findBy(array('a.categorie_id' => ($categorie == 0)?null:$categorie));
@@ -19,7 +24,7 @@ class SearchController extends Controller
 	}
 
 	public function villesAction(){
-		$ville = $this->request->getParams()[0];
+		$ville = $this->request->getParam('id');
 
 		if($ville){ // Si une categorie est choisie
 			/* Alors on récupére les annonces */
@@ -33,7 +38,7 @@ class SearchController extends Controller
 
 	}
 
-	public function avanceAction(){
+	public function indexAction(){
 
 		/* Selection de toute les categories, villes, regions */
 		$categories = $this->getDBInstance("Categories")->findAll();
@@ -69,6 +74,6 @@ class SearchController extends Controller
 			$annonces = $this->getDBInstance("Annonces")->findBy($champs);
 		}
 
-		echo $this->render("Search/avance", array('form' => new Form($_POST),'categories' => $categories, 'villes' => $villes, 'regions' => $regions, 'annonces' => $annonces));
+		echo $this->render("Search/index", array('form' => new Form($_POST),'categories' => $categories, 'villes' => $villes, 'regions' => $regions, 'annonces' => $annonces));
 	}
 }

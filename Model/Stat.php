@@ -32,18 +32,36 @@ class Stat
 		return $users['count'];
 	}
 
-	public function getMaxCategorie(){
-		$query = $this->db->query('SELECT nom, COUNT(a.id) AS count FROM categories AS c JOIN annonces AS a ON a.categorie_id = c.id GROUP BY nom ORDER BY count DESC LIMIT 1');
-		$categorie = $query->fetch();
+	public function getCountCategories(){
+		$query = $this->db->query('SELECT nom, COUNT(a.id) AS count FROM categories AS c JOIN annonces AS a ON a.categorie_id = c.id GROUP BY nom ORDER BY count DESC');
+		$array = $query->fetchAll();
 		$query->closeCursor();
-		return $categorie;
+		$categories = [];
+		foreach($array as $c){
+			$categories[$c['nom']] = $c['count'];
+		}
+		return $categories;
 	}
 
-	public function getMaxVille(){
-		$query = $this->db->query('SELECT nom, COUNT(a.id) AS count FROM villes AS v JOIN annonces AS a ON a.categorie_id = v.id GROUP BY nom ORDER BY count DESC LIMIT 1');
-		$ville = $query->fetch();
+	public function getCountVille(){
+		$query = $this->db->query("SELECT nom, COUNT(a.id) AS count FROM villes AS v JOIN annonces AS a ON a.ville_id = v.id GROUP BY nom ORDER BY count DESC");
+		$array = $query->fetchAll();
 		$query->closeCursor();
-		return $ville;
+		$villes = [];
+		foreach($array as $v){
+			$villes[$v['nom']] = $v['count'];
+		}
+		return $villes;
 	}
 
+	public function getStatGraph(){
+		$query = $this->db->query('SELECT COUNT(id) as count, MONTH(date) as month FROM annonces WHERE YEAR(date) = 2016 GROUP BY month;');
+		$data = $query->fetchAll();
+		$query->closeCursor();
+		$stat = [];
+		foreach($data as $v){
+			$stat[$v['month']] = $v['count'];
+		}
+		return $stat;
+	}
 }

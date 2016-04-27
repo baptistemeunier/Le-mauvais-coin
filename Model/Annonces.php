@@ -14,6 +14,10 @@ class Annonces
 	}
 
 
+	/** Fonction findAll
+	 * Fonction qui retourne toute les annonces (Sous forme d'objet Annonce)
+	 * @return array $annonces Tableau des annonces
+	 */
 	public function findAll(){
 		$query = $this->db->query('
 			SELECT a.id, a.titre, a.description, a.prix, a.date, a.categorie_id, c.nom as categorie, v.nom as ville

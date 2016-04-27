@@ -1,3 +1,8 @@
+
+# On active l'URL Rewriting
 RewriteEngine On
+
+# Si le fichier demandé n'existe pas
+# On le redirige vers le dossier public
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule (.*) public/$1 [L]

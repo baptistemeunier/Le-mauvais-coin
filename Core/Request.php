@@ -28,19 +28,16 @@ class Request
 	 */
 	private $Params;
 
+
+	/**
+	 * @var Array $post
+	 */
+	private $post;
+
 	public function __construct()
 	{
-		$this->url = $_SERVER['PATH_INFO'];
-		$this->parseUrl();
-	}
-
-	private function parseUrl()
-	{
-		$url = trim($this->url, "/"); // Retrait des / inutiles
-		$array = explode('/', $url); // Explosion de la chaine en tableau
-		$this->Controller = (($array[0] != "")?ucfirst($array[0]):'Annonce')."Controller"; // Controller démandé
-		$this->Action = (isset($array[1])?strtolower($array[1]):'index').'Action'; // Action démandée
-		$this->Params = array_slice($array, 2); // Parametres éventuelles
+		$this->url = isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:"/";
+		$this->post = $_POST;
 	}
 
 	/**
@@ -69,6 +66,13 @@ class Request
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function getParam($key)
+	{
+		return isset($this->Params[$key])?$this->Params[$key]:null;
+	}
+	/**
 	 * @return String
 	 */
 	public function getAction()
@@ -76,5 +80,22 @@ class Request
 		return $this->Action;
 	}
 
+	/**
+	 * @param Array $Params
+	 */
+	public function setParams($Params)
+	{
+		$this->Params = $Params;
+	}
+
+	public function getPost()
+	{
+		return $this->post;
+	}
+
+	public function getPostData($key)
+	{
+		return isset($this->post[$key])?$this->post[$key]:null;
+	}
 
 }

@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: baptiste
- * Date: 08/03/16
- * Time: 13:05
+/** Classe Database
+ * Classe qui contient la connexion PDO à la BDD
  */
 class Database
 {

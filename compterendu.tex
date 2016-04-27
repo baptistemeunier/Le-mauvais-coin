@@ -1,0 +1,41 @@
+\documentclass{book}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[francais]{babel}
+\usepackage{url} % Pour écrire des adresses cliquables.
+%\usepackage{lmodern} % Pour changer le pack de police.
+\usepackage[top=5cm, bottom=5cm, left=6cm, right=3cm]{geometry} % Les marges.
+\title{Projet Base de données}
+\author{\textsc{Meunier} - \textsc{Baptiste}}
+\date{\today} % Pour mettre la date du jour, tapez \today.
+\begin{document}
+ 
+\maketitle % Page de garde.
+
+    
+\frontmatter
+ 
+ \section{Principe de fonctionnement}
+
+Exemple avec l'URL /voir-annonce-4
+
+1 - L'utilisateur tombe sur un premier fichier .htaccess à la racine du site.
+Ce fichier .htaccess réecrie L'URL en /public/voir-annonce-4
+
+2 - L'utilisateur arrive sur un nouveau fichier .htaccess dans le dossier public.
+Ce fichier .htaccess réecrie L'URL en /public/index.php/voir-annonce-4
+
+3 - Puis il exécute le fichier index.php.
+Le ficher index.php definie les constantes puis charge l'autoloader et le Dispatcher.
+
+4 - Le Dispatcher crée l'objet Request (Qui va contenir toute les infos de la requete ex : URL, variable GET et POST).
+Il va ensuite, grace à la méthode findRoute, parcourir toutes les routes de la classe Config jusqu'à trouver celle qui correspond. (Si aucune ne correspond il revoie la page d'erreur 404). 
+
+5 - Un fois la route trouvée. On cherche le Controller, l'Action et les Paramètres si besoin.
+Dans notre exemple on à besoin du Controller (Classe) AnnoncesController, de l'Action (Méthode) viewAction, et d'un paramètre Id (ici 4).
+
+6 - Le controller est chargé puis la méthode est appelle. Tout le code PHP néssessaire à la page est effectué
+
+7 - La méthode retourne une vue avec les variables nécessaire.
+Cette vue est affichée sur le navigateur. L'utilisateur peut en lire le contenu. 
+\end{document}
