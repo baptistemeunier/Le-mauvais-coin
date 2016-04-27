@@ -14,8 +14,7 @@ class UserController extends Controller
 
 		/* Si connecté on le redirige vers l'acceueil */
 		if($this->getSession()->is_connect()){
-			header('Location: '.ROOT_RELATIVE);
-			exit();
+			$this->redirectToRoute('index');
 		}
 		$request = $this->request; // Récuperation de la requete
 		if(!empty($this->request->getPost())){ // Si des données
@@ -33,8 +32,8 @@ class UserController extends Controller
 				/* Sinon c'est que tout est bon */
 				$this->getSession()->setMessage("Vous êtes maintenant inscrit !", "valid");
 				$this->getDBInstance("Users")->add($this->request->getPost()); // On crée l'utilisateur
-				header('Location: '.ROOT_RELATIVE); // On le redirige
-				exit();
+				/* On le redirige vers l'acceueil */
+				$this->redirectToRoute('index');
 			}
 		}
 		/* Affichage de la page */
@@ -54,9 +53,8 @@ class UserController extends Controller
 		if(!empty($_POST)){
 			/* On tente de connecté l'utilisateur */
 			if($this->connectUser($_POST['email'], $_POST['mdp'])){
-				$route = (isset($_GET["before"])?'?page='.$_GET["before"]:''); // Si il vient d'unne autre page un va le renvoyée dessus
-				header('Location: '.ROOT_RELATIVE); // Si connecté on le redirige
-				exit();
+				/* Si connecté on le redirige vers l'acceueil */
+				$this->redirectToRoute('index');
 			}
 		}
 
@@ -67,14 +65,13 @@ class UserController extends Controller
 	public function adminAction(){
 		if(!$this->getSession()->is_Admin()){
 			$this->getSession()->setMessage("Veuillez vous connecté pour accedée à cette page", 'attention'); // on affiche l'erreur
-			header('Location: '.ROOT_RELATIVE.'/user/connect'); // On le redirige vers la connection
-			exit();
+			/* Si connecté on le redirige vers l'acceueil */
+			$this->redirectToRoute('login');
 		}
 
 		$users = $this->getDBInstance("Users")->findAll();
 
 		/* Affichage de la page */
 		return $this->render("User/admin", array('users' => $users));
-
 	}
 }

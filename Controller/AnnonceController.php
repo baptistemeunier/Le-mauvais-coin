@@ -39,8 +39,7 @@ class AnnonceController extends Controller
 		/* Si l'utilisateur n'est pas connecté */
 		if(!$this->getSession()->is_connect()){
 			$this->getSession()->setMessage("Veuillez vous connecté pour accedée à cette page", 'attention'); // on affiche l'erreur
-			header('Location: index.php?page=user/connect&before=annonce/create'); // On le redirige vers la connection
-			exit();
+			$this->redirectToRoute('login');
 		}
 
 		/* Si le formulaire est remplie */
@@ -75,8 +74,7 @@ class AnnonceController extends Controller
 				$id = $this->getDBInstance("Annonces")->add($post, $this->getSession()->getUser()->getId()); // On ajoute l'annonce
 				$this->getSession()->setMessage("Annonce en ligne !", "valid");
 
-				header('Location: '.ROOT_RELATIVE.'/annonce/view/'.$id); // On le redirige vers l'annoncne
-				exit();
+				$this->redirectToRoute('view_annonce', ['id' => $id]);
 			}
 		}
 

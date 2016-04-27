@@ -137,4 +137,9 @@ class Controller
 		return $this->render("Error/404", array('message' => $message)); // On rend la vue
 	}
 
+	public function redirectToRoute($url, $params = array()){
+		$url = $this->template->getUrl($url, $params);
+		header('Location: '.$url);
+		exit();
+	}
 }

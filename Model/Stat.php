@@ -44,7 +44,7 @@ class Stat
 	}
 
 	public function getCountVille(){
-		$query = $this->db->query('SELECT nom, COUNT(a.id) AS count FROM villes AS v JOIN annonces AS a ON a.categorie_id = v.id GROUP BY nom ORDER BY count DESC');
+		$query = $this->db->query("SELECT nom, COUNT(a.id) AS count FROM villes AS v JOIN annonces AS a ON a.ville_id = v.id GROUP BY nom ORDER BY count DESC");
 		$array = $query->fetchAll();
 		$query->closeCursor();
 		$villes = [];
