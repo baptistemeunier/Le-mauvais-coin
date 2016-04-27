@@ -12,8 +12,9 @@ class StatController extends Controller
 		$stat = $this->getDBInstance("Stat");
 		$annonces  = $stat->countAnnonce();
 		$users     = $stat->countUsers();
-		$categorie = $stat->getMaxCategorie();
-		$ville     = $stat->getMaxVille();
-		return $this->render("Stat/index", array('annonces' => $annonces, 'users' => $users, 'categorie' => $categorie, 'ville' => $ville));
+		$categories = $stat->getCountCategories();
+		$ville     = $stat->getCountVille();
+		$graph     = $stat->getStatGraph();
+		return $this->render("Stat/index", array('annonces' => $annonces, 'users' => $users, 'categories' => $categories, 'ville' => $ville, 'graph' => $graph));
 	}
 }
